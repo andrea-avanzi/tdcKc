@@ -1,0 +1,147 @@
+databaseChangeLog:
+    -   changeSet:
+            id: 1684331656958-1
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   createSequence:
+                        cacheSize: 1
+                        cycle: false
+                        dataType: bigint
+                        incrementBy: 50
+                        maxValue: 9223372036854775807
+                        minValue: 1
+                        sequenceName: sequence_generator
+                        startValue: 1
+    -   changeSet:
+            id: 1684331656958-2
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   createTable:
+                        columns:
+                            -   column:
+                                    constraints:
+                                        nullable: false
+                                        primaryKey: true
+                                        primaryKeyName: pk_attribute
+                                    name: id
+                                    type: BIGINT
+                            -   column:
+                                    constraints:
+                                        nullable: false
+                                    name: channel_id
+                                    type: INTEGER
+                            -   column:
+                                    name: status_thresholds
+                                    type: JSON
+                            -   column:
+                                    name: icon_key
+                                    type: VARCHAR(255)
+                            -   column:
+                                    constraints:
+                                        nullable: false
+                                    name: create_notification_events_on_danger
+                                    type: BOOLEAN
+                            -   column:
+                                    name: created_at
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: updated_at
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: name
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: description
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: allowed_keys
+                                    type: JSON
+                            -   column:
+                                    name: name_i18n
+                                    type: JSON
+                            -   column:
+                                    name: description_i18n
+                                    type: JSON
+                        tableName: attribute
+    -   changeSet:
+            id: 1684331656958-3
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   createTable:
+                        columns:
+                            -   column:
+                                    constraints:
+                                        nullable: false
+                                        primaryKey: true
+                                        primaryKeyName: pk_placemarkattributesearch
+                                    name: id
+                                    type: BIGINT
+                            -   column:
+                                    constraints:
+                                        nullable: false
+                                    name: channel_id
+                                    type: INTEGER
+                            -   column:
+                                    name: public_id
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: asset_id
+                                    type: VARCHAR(255)
+                            -   column:
+                                    constraints:
+                                        nullable: false
+                                    name: attribute_id
+                                    type: INTEGER
+                            -   column:
+                                    name: status
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: icon_key
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: placemark_updated_at
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: payload
+                                    type: JSON
+                            -   column:
+                                    name: payload_timestamp
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: title
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: description
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: created_at
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: updated_at
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: attribute_updated_at
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: additional_properties
+                                    type: JSON
+                            -   column:
+                                    name: type
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: geometry
+                                    type: JSON
+                            -   column:
+                                    name: tags
+                                    type: JSON
+                            -   column:
+                                    name: status_thresholds
+                                    type: JSON
+                            -   column:
+                                    name: attribute_name_i18n
+                                    type: JSON
+                        tableName: placemark_attribute_search
+

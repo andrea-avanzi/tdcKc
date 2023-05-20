@@ -1,0 +1,47 @@
+server:
+    port: 8086
+jwt:
+    auth:
+        converter:
+            resource-id: springboot-keycloak-client
+            principal-attribute: preferred_username
+spring:
+    application:
+        name: springboot-keycloak
+    datasource:
+        url: jdbc:postgresql://localhost:5432/tdcDb
+        username: postgres
+        password: postgres
+        driverClassName=: org.postgresql.Driver
+    jpa:
+        show-sql: true
+        hibernate.ddl-auto: validate
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 20MB
+            max-request-size: 20MB
+    jackson:
+        default-property-inclusion: NON_NULL
+    liquibase:
+        change-log: db/db.changelog-master.xml
+    security:
+        oauth2:
+            resourceserver:
+                jwt:
+                    issuer-uri: http://localhost:8090/realms/SpringBootKeycloak
+                    jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+logging:
+    level:
+        org.springframework.security: DEBUG
+
+it:
+    ctinnovation:
+        web:
+            security:
+                server:
+                    cors:
+                        enabled: true
+                        allowed-origin:
+                        - http://localhost:1841
+
