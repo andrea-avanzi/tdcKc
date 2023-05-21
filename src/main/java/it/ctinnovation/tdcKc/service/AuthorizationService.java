@@ -7,5 +7,5 @@ public interface AuthorizationService {
 
     KeyCloakResponse login(String username, String password) throws JsonProcessingException;
 
-    KeyCloakResponse renewJwt(String renewToken) throws JsonProcessingException;
+    KeyCloakResponse renewJwt(String refreshToken) throws JsonProcessingException;
 }

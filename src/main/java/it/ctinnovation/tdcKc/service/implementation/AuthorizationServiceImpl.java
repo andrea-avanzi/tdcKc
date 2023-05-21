@@ -36,6 +36,7 @@ public class AuthorizationServiceImpl implements AuthorizationService {
         return loginConnect(username, password);
     }
 
+
     @Override
     public KeyCloakResponse renewJwt(String refreshToken) throws JsonProcessingException {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();

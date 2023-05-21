@@ -17,14 +17,26 @@ public class ApiController {
     AuthorizationService authorizationService;
 
     @PostMapping(value = "/login")
-    public KeyCloakResponse login() throws JsonProcessingException {
-        return authorizationService.login("user1", "password");
+    public KeyCloakResponse login(@RequestParam String username, @RequestParam String password) throws JsonProcessingException {
+        return authorizationService.login(username, password);
     }
 
     @PostMapping(value = "/renewToken")
-    public KeyCloakResponse renewToken(@RequestBody String renewToken) throws JsonProcessingException {
+    public KeyCloakResponse renewToken(@RequestParam String renewToken) throws JsonProcessingException {
         return authorizationService.renewJwt(renewToken);
     }
 
+    public static class LoginRequest {
+        private String username;
+        private String password;
 
+        public String getUsername() {
+            return username;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+    }
 }
+

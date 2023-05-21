@@ -23,10 +23,10 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf()
-            .ignoringRequestMatchers("/login");
+            .ignoringRequestMatchers("/login", "/renewToken");
         http.authorizeHttpRequests()
             .requestMatchers(HttpMethod.OPTIONS,"/**").permitAll()
-            .requestMatchers(HttpMethod.POST, "/login").permitAll()
+            .requestMatchers(HttpMethod.POST, "/login","/renewToken").permitAll()
             .requestMatchers(HttpMethod.GET, "/test/anonymous", "/test/anonymous/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/test/admin", "/test/admin/**").hasRole(ADMIN)
             .requestMatchers(HttpMethod.GET, "/test/user").hasAnyRole(ADMIN, USER)
