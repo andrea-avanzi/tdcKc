@@ -125,19 +125,17 @@ public class TheaterServiceImpl implements TheaterService {
 
     @Override
     public List<Attribute> getAttributes() throws JsonProcessingException {
-        attributeRepository.deleteAll();
         RequestEntity<Void> request = createRequest("https://geo-demo.dev.ctinnovation.it/api/attributes");
         ResponseEntity<String> response = restTemplate.exchange(request, String.class);
         TypeReference<List<Attribute>> attributeTypeReference = new TypeReference<List<Attribute>>() {};
         List<Attribute> attributeList=  objectMapper.readValue(response.getBody(), attributeTypeReference);
+        attributeRepository.deleteAll();
         attributeRepository.saveAll(attributeList);
         return attributeList;
     }
 
     @Override
     public List<PlacemarkAttributeSearch> getPlacemarks() throws JsonProcessingException {
-        placemarkAttributeSearchRepository.deleteAll();
-
         List<PlacemarkAttributeSearch> placemarkAttributeSearchList= new ArrayList<>();
         RequestEntity<Void> reduced = createRequest("https://geo-demo.dev.ctinnovation.it/api/search/stream?bbox=-174.541254&bbox=-62.866286&bbox=61.366711&bbox=71.2788");
         ResponseEntity<String> response = restTemplate.exchange(reduced, String.class);
@@ -149,6 +147,7 @@ public class TheaterServiceImpl implements TheaterService {
             ResponseEntity<String> resp = restTemplate.exchange(request, String.class);
             placemarkAttributeSearchList.add(objectMapper.readValue(resp.getBody(), PlacemarkAttributeSearch.class));
         }
+        placemarkAttributeSearchRepository.deleteAll();
         placemarkAttributeSearchRepository.saveAll(placemarkAttributeSearchList);
         return placemarkAttributeSearchList;
     }

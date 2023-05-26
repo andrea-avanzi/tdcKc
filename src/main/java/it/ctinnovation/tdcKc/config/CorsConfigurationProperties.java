@@ -4,6 +4,7 @@ package it.ctinnovation.tdcKc.config;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @ConfigurationProperties(prefix = "it.ctinnovation.web.security.server.cors")
 public class CorsConfigurationProperties {
@@ -26,4 +27,5 @@ public class CorsConfigurationProperties {
     public void setAllowedOrigin(String[] allowedOrigin) {
         this.allowedOrigin = allowedOrigin;
     }
+
 }

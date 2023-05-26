@@ -2,16 +2,12 @@ package it.ctinnovation.tdcKc.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.ctinnovation.tdcKc.model.KeyCloakResponse;
-import it.ctinnovation.tdcKc.model.attribute.Attribute;
-import it.ctinnovation.tdcKc.model.placemark.PlacemarkAttributeSearch;
 import it.ctinnovation.tdcKc.service.AuthorizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-public class ApiController {
+public class AuthenticationController {
 
     @Autowired
     AuthorizationService authorizationService;

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @EnableRetry
 @EnableConfigurationProperties({CorsConfigurationProperties.class})
+@ComponentScan({"ch.ralscha.extdirectspring"})
 public class AppConfig implements WebMvcConfigurer {
 
     @Autowired
@@ -43,7 +45,6 @@ public class AppConfig implements WebMvcConfigurer {
                     .allowedMethods("*")
                     .allowedHeaders("*");
             for (String origin : corsConfigurationProperties.getAllowedOrigin()) {
-                System.out.println("Aggiunta origin: "+origin);
                 corsRegistration.allowedOrigins(origin);
             }
         }
