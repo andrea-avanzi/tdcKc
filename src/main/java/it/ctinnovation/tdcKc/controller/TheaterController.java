@@ -4,10 +4,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import it.ctinnovation.tdcKc.model.attribute.Attribute;
 import it.ctinnovation.tdcKc.model.placemark.PlacemarkAttributeSearch;
 import it.ctinnovation.tdcKc.service.TheaterService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import it.ctinnovation.tdcKc.util.ExtResponse;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,6 +17,22 @@ public class TheaterController {
 
     public TheaterController(TheaterService theaterService) {
         this.theaterService = theaterService;
+    }
+
+    @GetMapping(value="/loadAttributes")
+    public ResponseEntity<ExtResponse> loadAttributes() throws JsonProcessingException {
+        theaterService.getAttributes();
+        ExtResponse extResponse=new ExtResponse();
+        extResponse.setMessage("Attributes successfully loaded");
+        return ResponseEntity.ok(extResponse);
+    }
+
+    @GetMapping(value="/loadPlacemarks")
+    public ResponseEntity<ExtResponse> loadPlacemarks() throws JsonProcessingException {
+        theaterService.getPlacemarks();
+        ExtResponse extResponse=new ExtResponse();
+        extResponse.setMessage("Placemarks successfully loaded");
+        return ResponseEntity.ok(extResponse);
     }
 
     @RequestMapping(value = "/api/getJWT", method = RequestMethod.GET)

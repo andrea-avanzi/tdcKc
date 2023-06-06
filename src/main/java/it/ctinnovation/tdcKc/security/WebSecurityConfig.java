@@ -28,6 +28,7 @@ public class WebSecurityConfig {
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/api.js").permitAll()
+            .requestMatchers(HttpMethod.GET, "/loadPlacemarks").permitAll()
             .anyRequest().authenticated();
         http.oauth2ResourceServer()
             .jwt()

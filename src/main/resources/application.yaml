@@ -45,3 +45,43 @@ it:
                         allowed-origin:
                         - http://localhost:1841
 
+cloud:
+    aws:
+        credentials:
+            accessKey: AKIAZYQYWUM4J6TDMJLY
+            secretKey: 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
+        region:
+            static: eu-central-1
+            auto: false
+        roles:
+            in:
+                producer:
+                    key: dev.geo.drools.in.producer
+                    role: arn:aws:iam::671140455224:role/dev.geo.drools.in.producer
+                consumer:
+                    key: dev.geo.drools.in.consumer
+                    role: arn:aws:iam::671140455224:role/dev.geo.drools.in.consumer
+            out:
+                producer:
+                    key: dev.geo.drools.out.producer
+                    role: arn:aws:iam::671140455224:role/dev.geo.drools.out.producer
+                consumer:
+                    key: dev.geo.drools.out.consumer
+                    role: arn:aws:iam::671140455224:role/dev.geo.drools.out.consumer
+
+sqs:
+    session: test
+    queues:
+        in:
+            queue: dev-geo-drools-in.fifo
+            url: https://sqs.eu-central-1.amazonaws.com/671140455224/dev-geo-drools-in.fifo
+            waitTimeSeconds: 10
+            maxNumberMessages: 10
+        out:
+            queue: dev-geo-drools-out.fifo
+            url: https://sqs.eu-central-1.amazonaws.com/671140455224/dev-geo-drools-out.fifo
+
+mqtt:
+    url: tcp://test.mosquitto.org:1883
+    clientId: TheatherDemoConf
+    defaultTopic: fd875cf3-2865-4442-acf5-6b4c19d92a9a/demo
