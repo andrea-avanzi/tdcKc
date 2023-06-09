@@ -9,6 +9,7 @@ import it.ctinnovation.tdcKc.service.PlacemarkService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlacemarkServiceImpl implements PlacemarkService {
@@ -23,4 +24,6 @@ public class PlacemarkServiceImpl implements PlacemarkService {
     public List<PlacemarkAttributeSearch> findAll() {
         return repository.findAll();
     }
+
+
 }
