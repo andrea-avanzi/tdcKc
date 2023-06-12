@@ -24,7 +24,7 @@ spring:
     jackson:
         default-property-inclusion: NON_NULL
     liquibase:
-        change-log: db/db.changelog-master.xml
+        change-log: db/changelog/db.changelog-master.xml
     security:
         oauth2:
             resourceserver:
