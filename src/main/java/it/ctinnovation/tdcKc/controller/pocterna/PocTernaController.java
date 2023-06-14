@@ -34,4 +34,15 @@ public class PocTernaController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload CSV file.");
         }
     }
+
+    @PostMapping("/uploadProvvedimenti")
+    public ResponseEntity<String> provvedimentiFile(@RequestParam ("provvedimenti") MultipartFile file) throws CsvValidationException {
+        log.info("Received file: " + file.getOriginalFilename());
+        try {
+            pocTernaService.uploadProvvedimenti(file);
+            return ResponseEntity.ok("CSV file uploaded successfully.");
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload CSV file.");
+        }
+    }
 }

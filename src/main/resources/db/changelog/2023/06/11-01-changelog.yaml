@@ -77,7 +77,8 @@ databaseChangeLog:
                             -   column:
                                     name: note_anomalia
                                     type: VARCHAR(255)
-                        tableName: anomalie_aperte
+                        tableName: anomalia_aperta
+
     -   changeSet:
             id: 1686480159037-2
             author: marcopancotti (generated)
@@ -179,6 +180,9 @@ databaseChangeLog:
                                     name: payload
                                     type: json
                             -   column:
+                                    name: status_thresholds
+                                    type: json
+                            -   column:
                                     name: payload_timestamp
                                     type: VARCHAR(255)
                             -   column:
@@ -207,3 +211,15 @@ databaseChangeLog:
                                     type: VARCHAR(255)
                         tableName: placemark_attribute_search
 
+    -   changeSet:
+            id: 1686480159037-4
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   createIndex:
+                        indexName: idx_anomalia_codicesap
+                        tableName: anomalia_aperta
+                        unique: false
+                        columns:
+                            -   column:
+                                    name: codicesap

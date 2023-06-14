@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -50,5 +51,13 @@ public class AppConfig implements WebMvcConfigurer {
             }
         }
     }
+
+//    @Bean
+//    public MultipartResolver multipartResolver() {
+//        CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
+//        commonsMultipartResolver.setMaxUploadSize(52428800);
+//        commonsMultipartResolver.setMaxInMemorySize(20480);
+//        return commonsMultipartResolver;
+//    }
 
 }

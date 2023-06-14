@@ -29,8 +29,10 @@ public class WebSecurityConfig {
             .authorizeHttpRequests()
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/error").permitAll()
             .requestMatchers(HttpMethod.GET, "/api.js").permitAll()
-            .requestMatchers(HttpMethod.POST, "/pocTerna/uploadAnomalieAperte").permitAll() // TODO togliere
+            .requestMatchers(HttpMethod.POST, "/pocTerna/**").permitAll() // TODO togliere
+            .requestMatchers(HttpMethod.GET, "/custom/**").permitAll() // TODO togliere
             .requestMatchers(HttpMethod.GET, "/loadPlacemarks").permitAll()
             .anyRequest().authenticated()
             .and()

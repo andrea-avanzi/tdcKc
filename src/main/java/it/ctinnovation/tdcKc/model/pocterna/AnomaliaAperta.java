@@ -1,5 +1,6 @@
 package it.ctinnovation.tdcKc.model.pocterna;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Entity
-public class AnomalieAperte {
+public class AnomaliaAperta {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String unitaImpianti;
