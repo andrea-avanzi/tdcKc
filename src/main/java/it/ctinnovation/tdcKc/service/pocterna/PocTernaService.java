@@ -5,6 +5,7 @@ import com.opencsv.exceptions.CsvValidationException;
 import it.ctinnovation.tdcKc.model.pocterna.AnomaliaAperta;
 import it.ctinnovation.tdcKc.model.pocterna.Provvedimento;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.Page;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -18,7 +19,7 @@ public interface PocTernaService {
 
     String getTicketsAsString(String id);
 
-    List<Provvedimento> getProvvedimenti();
+    Page<Provvedimento> getProvvedimenti(ExtDirectStoreReadRequest storeRequest);
 
-    List<AnomaliaAperta> getAnomalie(ExtDirectStoreReadRequest storeRequest);
+    Page<AnomaliaAperta> getAnomalie(ExtDirectStoreReadRequest storeRequest);
 }

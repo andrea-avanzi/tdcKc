@@ -27,7 +27,7 @@ public class AnomalieAperteController {
     @ExtDirectMethod(STORE_READ)
     public ExtDirectStoreResult<AnomaliaAperta> read(ExtDirectStoreReadRequest storeRequest) {
 
-        List<AnomaliaAperta> data = pocTernaService.getAnomalie(storeRequest);
-        return new ExtDirectStoreResult<>(data.size(), data);
+        Page<AnomaliaAperta> data = pocTernaService.getAnomalie(storeRequest);
+        return new ExtDirectStoreResult<>(data.getTotalElements(), data.getContent());
     }
 }

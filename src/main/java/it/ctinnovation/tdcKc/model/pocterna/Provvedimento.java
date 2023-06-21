@@ -20,18 +20,18 @@ public class Provvedimento {
     String codiceSAP;
     String posizioneSede;
     String controlliProvvedimenti;
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss[.SSS]'Z'", timezone = "UTC+1")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataElaborazioneProvvedimento;
     String autoreValidazioneProvvedimento;
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss[.SSS]'Z'", timezone = "UTC+1")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataValidazioneProvvedimento;
     String codiceAvvisoSap;
     String codiceIstanzaMake;
     String idMbi;
     String statoProvvedimento;
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss[.SSS]'Z'", timezone = "UTC+1")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataScadenzaProvvedimento;
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss[.SSS]'Z'", timezone = "UTC+1")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataOttimizzata;
     String numElaborazioneDiagnostica;
     String notaProvvedimento;
@@ -40,10 +40,10 @@ public class Provvedimento {
     String descriziooneAnomalia;
     String valoreAnomalia;
     String posizioneAnomalia;
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss[.SSS]'Z'", timezone = "UTC+1")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataRilevazioneAnomalia;
     String autoreRilevazioneAnomalia;
-    @JsonFormat(pattern="yyyy-MM-dd'T'HH:mm:ss[.SSS]'Z'", timezone = "UTC+1")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataUltimaRilevazioneAnomalia;
     String autoreUltimaRilevazioneAnomalia;
     String codiceAvvisoSapAnomalia;

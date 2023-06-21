@@ -1,12 +1,16 @@
 package it.ctinnovation.tdcKc.model.pocterna;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.text.DateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.*;
 
 @Data
 @Builder
@@ -15,12 +19,12 @@ import java.util.List;
 public class TicketResponse {
     private List<Ticket> activeCases=new ArrayList<>();
     private List<Ticket> closedCases=new ArrayList<>();
-
-
-
     public void setAnomalieAperte(List<AnomaliaAperta> all) {
         long ticketNumber=3279l;
+        ZoneId zoneId = ZoneId.of("Europe/Rome");
         for(AnomaliaAperta anomalieAperta:all){
+            Date anoAp=new Date(anomalieAperta.getDataUltimaRilevazioneAnomalia().getTime());
+            Instant dataUltimaRilevazione=anoAp.toInstant();
             Ticket ticket=new Ticket(
                 ticketNumber++,
                 anomalieAperta.getCodiceSAP(),
@@ -28,7 +32,7 @@ public class TicketResponse {
                 anomalieAperta.getDescrizioneAnomalia(),
                 "Anomalia",
                 anomalieAperta.getStatoAnomalia(),
-                anomalieAperta.dataRilevazioneAnomalia.toInstant(),
+                dataUltimaRilevazione,
                 null,
                 null,
                 null,
@@ -40,7 +44,14 @@ public class TicketResponse {
 
     public void setProvvedimenti(List<Provvedimento> all) {
         long ticketNumber=3279l;
+        ObjectMapper objectMapper=new ObjectMapper();
+        Locale locale = new Locale("it", "IT");
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.DEFAULT, locale);
+        String date = dateFormat.format(new Date());
         for(Provvedimento provvedimento:all){
+            Map<String, String> data = new HashMap<>();
+            data.put("Data validazione", dateFormat.format(provvedimento.dataValidazioneProvvedimento));
+            data.put("Data scadenza", dateFormat.format(provvedimento.dataScadenzaProvvedimento));
             Ticket ticket=new Ticket(
                 ticketNumber++,
                 provvedimento.getCodiceSAP(),
@@ -52,7 +63,7 @@ public class TicketResponse {
                 provvedimento.dataValidazioneProvvedimento.toInstant(),
                 null,
                 provvedimento.dataScadenzaProvvedimento.toInstant(),
-                null,
+                data,
                 null);
             closedCases.add(ticket);
         }
@@ -76,3 +87,5 @@ public class TicketResponse {
  Object data,
  String url) {
  */
+
+

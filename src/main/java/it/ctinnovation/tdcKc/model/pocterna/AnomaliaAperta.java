@@ -1,12 +1,8 @@
 package it.ctinnovation.tdcKc.model.pocterna;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
-
 import java.util.Date;
 
 @Data
@@ -23,8 +19,12 @@ public class AnomaliaAperta {
     String descrizioneAnomalia;
     String valoreAnomalia;
     String posizioneAnomalia;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
+    @Temporal(TemporalType.DATE)
     Date dataRilevazioneAnomalia;
     String autoreRilevazione;
+    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataUltimaRilevazioneAnomalia;
     String autoreUltimaRilevazione;
     String codiceAvvisoSap;

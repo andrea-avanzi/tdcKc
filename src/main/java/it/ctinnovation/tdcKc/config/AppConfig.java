@@ -46,9 +46,10 @@ public class AppConfig implements WebMvcConfigurer {
                 registry.addMapping("/**")
                     .allowedMethods("*")
                     .allowedHeaders("*");
-            for (String origin : corsConfigurationProperties.getAllowedOrigin()) {
-                corsRegistration.allowedOrigins(origin);
-            }
+            corsRegistration.allowedOrigins("http://localhost:3000","http://localhost:1841");
+//            for (String origin : corsConfigurationProperties.getAllowedOrigin()) {
+//                corsRegistration.allowedOrigins(origin);
+//            }
         }
     }
 

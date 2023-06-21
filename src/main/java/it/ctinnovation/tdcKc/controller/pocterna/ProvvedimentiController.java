@@ -6,6 +6,7 @@ import ch.ralscha.extdirectspring.bean.ExtDirectStoreResult;
 import it.ctinnovation.tdcKc.model.pocterna.AnomaliaAperta;
 import it.ctinnovation.tdcKc.model.pocterna.Provvedimento;
 import it.ctinnovation.tdcKc.service.pocterna.PocTernaService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class ProvvedimentiController {
 
     @ExtDirectMethod(STORE_READ)
     public ExtDirectStoreResult<Provvedimento> read(ExtDirectStoreReadRequest storeRequest) {
-        List<Provvedimento> data = pocTernaService.getProvvedimenti();
-        return new ExtDirectStoreResult<>(data.size(), data);
+        Page<Provvedimento> data = pocTernaService.getProvvedimenti(storeRequest);
+        return new ExtDirectStoreResult<>(data.getTotalElements(), data.getContent());
     }
 }
