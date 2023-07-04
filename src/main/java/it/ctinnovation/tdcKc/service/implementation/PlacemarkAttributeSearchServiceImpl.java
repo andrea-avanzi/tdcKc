@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Service
 public class PlacemarkAttributeSearchServiceImpl implements PlacemarkAttributeSearchService {
-
     PlacemarkAttributeSearchRepository placemarkAttributeSearchRepository;
 
     PlacemarkAttributeSearchServiceImpl(PlacemarkAttributeSearchRepository placemarkAttributeSearchRepository) {

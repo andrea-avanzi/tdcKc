@@ -1,0 +1,28 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1688490548231-5
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_scenerioflow
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: placemerk
+                  type: VARCHAR(255)
+              - column:
+                  name: interval_between_messages
+                  type: INT
+              - column:
+                  name: messages
+                  type: json
+            tableName: scenerio_flow
+
+

@@ -22,21 +22,24 @@ public class TicketResponse {
     public void setAnomalieAperte(List<AnomaliaAperta> all) {
         long ticketNumber=3279l;
         ZoneId zoneId = ZoneId.of("Europe/Rome");
+        ObjectMapper objectMapper=new ObjectMapper();
         for(AnomaliaAperta anomalieAperta:all){
             Date anoAp=new Date(anomalieAperta.getDataUltimaRilevazioneAnomalia().getTime());
             Instant dataUltimaRilevazione=anoAp.toInstant();
+            Map<String, String> data = new HashMap<>();
+            data.put("Tipo sede tecnica", anomalieAperta.getTipoSedeTecnica());
             Ticket ticket=new Ticket(
                 ticketNumber++,
                 anomalieAperta.getCodiceSAP(),
                 anomalieAperta.getNumeroElaborazioneDiagnostica().toString(),
-                anomalieAperta.getDescrizioneAnomalia(),
                 "Anomalia",
+                anomalieAperta.getDescrizioneAnomalia(),
                 anomalieAperta.getStatoAnomalia(),
                 dataUltimaRilevazione,
                 null,
                 null,
                 null,
-                null,
+                data,
                 null);
             activeCases.add(ticket);
         }
@@ -52,12 +55,13 @@ public class TicketResponse {
             Map<String, String> data = new HashMap<>();
             data.put("Data validazione", dateFormat.format(provvedimento.dataValidazioneProvvedimento));
             data.put("Data scadenza", dateFormat.format(provvedimento.dataScadenzaProvvedimento));
+            data.put("Tipo sede tecnica", provvedimento.getTipoSedeTecnica());
             Ticket ticket=new Ticket(
                 ticketNumber++,
                 provvedimento.getCodiceSAP(),
                 provvedimento.getNumElaborazioneDiagnostica().toString(),
-                provvedimento.controlliProvvedimenti,
                 "Provvedimento",
+                provvedimento.controlliProvvedimenti,
                 provvedimento.getStatoProvvedimento(),
                 provvedimento.dataElaborazioneProvvedimento.toInstant(),
                 provvedimento.dataValidazioneProvvedimento.toInstant(),

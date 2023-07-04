@@ -1,6 +1,7 @@
 package it.ctinnovation.tdcKc.model.attribute;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
+import it.ctinnovation.tdcKc.model.abstractEntities.AbstractEntity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;

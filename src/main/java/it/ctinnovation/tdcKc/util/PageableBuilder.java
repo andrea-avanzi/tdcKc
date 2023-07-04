@@ -22,13 +22,13 @@ public class PageableBuilder {
                         sorters.add(defaultSort);
                         return defaultSort;
                     });
-            Sort springSort = SortAdapter.createSort(sorters);
+            Sort springSort = SortBuilder.createSort(sorters);
             return PageRequest.of(storeRequest.getPage() - 1, storeRequest.getLimit(), springSort);
         }
         else{
             List<SortInfo> sorters=new ArrayList<>();
             sorters.add(defaultSort);
-            Sort springSort = SortAdapter.createSort(sorters);
+            Sort springSort = SortBuilder.createSort(sorters);
             return PageRequest.of(storeRequest.getPage() - 1, storeRequest.getLimit(), springSort);
         }
 
@@ -36,7 +36,7 @@ public class PageableBuilder {
 
     public static Pageable of(ExtDirectStoreReadRequest storeRequest) {
         if (storeRequest.getSorters() != null) {
-            Sort springSort = SortAdapter.createSort(storeRequest.getSorters());
+            Sort springSort = SortBuilder.createSort(storeRequest.getSorters());
             return PageRequest.of(storeRequest.getPage() - 1, storeRequest.getLimit(), springSort);
         }
         else{

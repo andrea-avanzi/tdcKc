@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 
 import java.util.List;
 
-public class SortAdapter {
+public class SortBuilder {
 
     public static Sort createSort(List<SortInfo> sortInfos) {
         Sort sort = Sort.unsorted();

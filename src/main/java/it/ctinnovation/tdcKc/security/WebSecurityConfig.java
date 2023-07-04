@@ -32,9 +32,9 @@ public class WebSecurityConfig {
             .requestMatchers(HttpMethod.GET, "/error").permitAll()
             .requestMatchers(HttpMethod.GET, "/api.js").permitAll()
             .requestMatchers(HttpMethod.GET, "/api.js/**").permitAll()
-            .requestMatchers(HttpMethod.POST, "/pocTerna/**").permitAll() // TODO togliere
-            .requestMatchers(HttpMethod.GET, "/custom/**").permitAll() // TODO togliere
-            .requestMatchers(HttpMethod.GET, "/loadPlacemarks").permitAll()
+            //.requestMatchers(HttpMethod.POST, "/pocTerna/**").permitAll() // TODO togliere
+            //.requestMatchers(HttpMethod.GET, "/custom/**").permitAll() // TODO togliere
+            //.requestMatchers(HttpMethod.GET, "/loadPlacemarks").permitAll()
             .anyRequest().authenticated()
             .and()
             .headers().addHeaderWriter(new StaticHeadersWriter("Content-Security-Policy","frame-ancestors 'self' http://localhost:1841"))
