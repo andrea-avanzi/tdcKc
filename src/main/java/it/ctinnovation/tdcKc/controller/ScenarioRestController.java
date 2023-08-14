@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.controller.pocterna;
+package it.ctinnovation.tdcKc.controller;
 
 import it.ctinnovation.tdcKc.service.implementation.ScenarioServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +27,7 @@ public class ScenarioRestController {
             // Process the file upload
 
             // Update the entity with the file
-            log.info("Upload scenario file");
+            log.info("Uploaded scenario file");
             return ResponseEntity.ok("File uploaded successfully.");
     }
 }

@@ -1,0 +1,35 @@
+@startuml
+
+' write class Scenario
+
+class ScenarioEntity extends AbstractEntity {
+    String name;
+    @OneToMany(mappedBy = "scenario", cascade = CascadeType.ALL, orphanRemoval = true)
+        List<ScenarioFlowEntity> scenarioFlows = new ArrayList<>();
+}
+
+class ScenarioFlowEntity extends AbstractEntity {
+    @ManyToOne
+    ScenarioEntity scenario;
+    String placemerkId;
+    Integer intervalBetweenMessages;
+}
+
+class ScenarioMessageEntity extends AbstractEntity {
+    private String name;
+
+    private List<DataItem> data;
+}
+
+class DataItem {
+    private String key;
+    private String value;
+}
+
+class ScenarioMessage extends AbstractEntity {
+    String ts;
+    String msg;
+}
+
+
+@enduml
