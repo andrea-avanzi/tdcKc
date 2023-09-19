@@ -8,5 +8,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class CorsConfigurationProperties {
 
     private Boolean enabled = true;
-    private String[] allowedOrigin= {"http://localhost:1841"};
+    private String[] allowedOrigin;
+    //private String[] allowedOrigin= {"http://localhost:1841","https://tylconsulting.it","http://localhost:3000"};
 }

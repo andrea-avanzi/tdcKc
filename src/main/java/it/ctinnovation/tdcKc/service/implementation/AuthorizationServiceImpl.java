@@ -2,10 +2,14 @@ package it.ctinnovation.tdcKc.service.implementation;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import it.ctinnovation.tdcKc.config.properties.AuthorizationServiceProperties;
+import it.ctinnovation.tdcKc.config.properties.CorsConfigurationProperties;
 import it.ctinnovation.tdcKc.model.KeyCloakResponse;
 import it.ctinnovation.tdcKc.service.AuthorizationService;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,20 +19,22 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 @Transactional
+@EnableConfigurationProperties({AuthorizationServiceProperties.class})
 public class AuthorizationServiceImpl implements AuthorizationService {
     private final Logger log = LoggerFactory.getLogger(AuthorizationServiceImpl.class);
 
-    private static final String JWTSERVER = "http://localhost:8090/realms/SpringBootKeycloak/protocol/openid-connect/token";
-    private static final String CLIENT_ID = "springboot-keycloak-client";
-    private static final String PASSWORD_GRANTTYPE = "password";
-    private static final String REFRESH_TOKEN = "refresh_token";
-
     RestTemplate restTemplate;
     ObjectMapper objectMapper;
+    AuthorizationServiceProperties authorizationServiceProperties;
 
-    AuthorizationServiceImpl(RestTemplate restTemplate, ObjectMapper objectMapper) {
+    AuthorizationServiceImpl(RestTemplate restTemplate, ObjectMapper objectMapper, AuthorizationServiceProperties authorizationServiceProperties) {
         this.restTemplate = restTemplate;
         this.objectMapper = objectMapper;
+        this.authorizationServiceProperties = authorizationServiceProperties;
+        log.info(authorizationServiceProperties.getClientId());
+        log.info(authorizationServiceProperties.getJwtServer());
+        log.info(authorizationServiceProperties.getPasswordGrantType());
+        log.info(authorizationServiceProperties.getRefreshToken());
     }
 
     @Override
@@ -40,25 +46,25 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     @Override
     public KeyCloakResponse renewJwt(String refreshToken) throws JsonProcessingException {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("grant_type", REFRESH_TOKEN);
+        map.add("grant_type", authorizationServiceProperties.getRefreshToken());
         map.add("refresh_token",refreshToken);
         return getKeyCloakResponse(map);
     }
 
     private KeyCloakResponse loginConnect(String username, String password) throws JsonProcessingException {
         MultiValueMap<String, String> map = new LinkedMultiValueMap<String, String>();
-        map.add("grant_type", PASSWORD_GRANTTYPE);
+        map.add("grant_type", authorizationServiceProperties.getPasswordGrantType());
         map.add("username", username);
         map.add("password", password);
         return getKeyCloakResponse(map);
     }
 
     private KeyCloakResponse getKeyCloakResponse(MultiValueMap<String, String> map) throws JsonProcessingException {
-        map.add("client_id", CLIENT_ID);
+        map.add("client_id", authorizationServiceProperties.getClientId());
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         HttpEntity<MultiValueMap<String, String>> request = new HttpEntity<>(map, headers);
-        ResponseEntity<String> re = restTemplate.postForEntity(JWTSERVER, request, String.class);
+        ResponseEntity<String> re = restTemplate.postForEntity(authorizationServiceProperties.getJwtServer(), request, String.class);
         String jwtResponse = re.getBody();
         return objectMapper.readValue(jwtResponse, KeyCloakResponse.class);
     }

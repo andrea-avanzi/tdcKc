@@ -8,6 +8,9 @@ jwt:
             resource-id: springboot-keycloak-client
             principal-attribute: preferred_username
 spring:
+    web:
+        resources:
+            static-locations: /static/
     application:
         name: springboot-keycloak
     datasource:
@@ -32,6 +35,7 @@ spring:
             resourceserver:
                 jwt:
                     issuer-uri: http://localhost:8090/realms/SpringBootKeycloak
+                    #issuer-uri: https://tylconsulting.it/auth/realms/SpringBootKeycloak
                     jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
 logging:
     level:
@@ -39,6 +43,12 @@ logging:
 
 it:
     ctinnovation:
+        authorizationserver:
+            jwtServer: http://localhost:8090/realms/SpringBootKeycloak/protocol/openid-connect/token"
+            #jwtServer: http://tylconsulting.it/auth/realms/SpringBootKeycloak/protocol/openid-connect/token"
+            clientId: springboot-keycloak-client
+            passwordGrantType: password
+            refreshToken: refresh_token
         web:
             security:
                 server:
@@ -46,6 +56,9 @@ it:
                         enabled: true
                         allowed-origin:
                         - http://localhost:1841
+                        - http://localhost:3000
+                        - https://tylconsulting.it
+                        - http://tylconsulting.it
 
 cloud:
     aws:
