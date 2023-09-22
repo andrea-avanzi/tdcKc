@@ -10,4 +10,6 @@ public interface PlacemarkAttributeSearchService {
     Optional<PlacemarkAttributeSearch> findByPublicId(String publicId);
 
     void save(PlacemarkAttributeSearch placemarkAttributeSearch);
+
+    PlacemarkAttributeSearch getById(Long id);
 }

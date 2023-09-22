@@ -34,6 +34,7 @@ public class WebSecurityConfig {
             .requestMatchers(HttpMethod.GET, "/api.js").permitAll()
             .requestMatchers(HttpMethod.GET, "/api.js/**").permitAll()
             .requestMatchers(HttpMethod.GET, "/static/**").permitAll()
+            .requestMatchers(HttpMethod.POST, "/processMessage").permitAll()
             //.requestMatchers(HttpMethod.POST, "/pocTerna/**").permitAll() // TODO togliere
             //.requestMatchers(HttpMethod.GET, "/custom/**").permitAll() // TODO togliere
             //.requestMatchers(HttpMethod.GET, "/loadPlacemarks").permitAll()

@@ -9,6 +9,7 @@ import it.ctinnovation.tdcKc.service.MqttGateway;
 import it.ctinnovation.tdcKc.service.MqttService;
 import it.ctinnovation.tdcKc.service.PlacemarkAttributeSearchService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +46,7 @@ public class MqttServiceImpl implements MqttService{
     }
 
     @Override
+    @Transactional
     public void sendMessagesToMqttBroker(MqttMessage mqttMessage) throws Exception {
         mqttGateway.sendToMqtt(objectMapper.writeValueAsString(mqttMessage));
         String placemarkId= mqttMessage.name();
