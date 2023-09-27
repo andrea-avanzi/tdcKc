@@ -1,19 +1,16 @@
 package it.ctinnovation.tdcKc.service;
 
+import it.ctinnovation.tdcKc.repository.ScenarioMessageEntityRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
-import it.ctinnovation.tdcKc.model.scenario.entitiy.DataItem;
-import it.ctinnovation.tdcKc.model.scenario.entitiy.ScenarioMessageEntity;
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class ScenarioMessageService {
 
-import java.util.List;
-
-public interface ScenarioMessageService {
-    List<ScenarioMessageEntity> read(Long scenarioFlowEntityId);
-    void create (Long scenarioFlowEntityId, ScenarioMessageEntity scenarioMessageEntity);
-    ScenarioMessageEntity update (ScenarioMessageEntity scenarioMessageEntity);
-    void destroy(List<ScenarioMessageEntity> scenarioMessageEntityList);
+    private final ScenarioMessageEntityRepository scenarioMessageEntityRepository;
 
 
-    List<DataItem> readDataItems(Long scenarioMessageEntityId);
-    DataItem createDataItem(Long scenarioMessageEntityId, DataItem dataItem);
-    void destroyDataItem(Long scenarioMessageEntityId, List<DataItem> dataItemList);
 }

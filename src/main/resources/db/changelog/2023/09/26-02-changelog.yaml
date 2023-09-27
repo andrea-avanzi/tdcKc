@@ -1,0 +1,68 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1695732083143-1
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: scenario_entity_id
+                  type: BIGINT
+            tableName: scenario_message_entity
+  - changeSet:
+      id: 1695732083143-2
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: scenario_id
+                  type: INT
+            tableName: scenario_log_entity
+  - changeSet:
+      id: 1695732083143-3
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: scenario_entity_id
+            baseTableName: scenario_message_entity
+            constraintName: FK_SCENARIOMESSAGEENTITY_ON_SCENARIOENTITY
+            referencedColumnNames: id
+            referencedTableName: scenario_entity
+  - changeSet:
+      id: 1695732083143-4
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: scenario_message_entity
+            constraintName: fk_scenariomessageentity_on_scenarioflowentity
+  - changeSet:
+      id: 1695732083143-5
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: scenario_flow_entity
+            constraintName: fk_scenerioflowentity_on_scenario
+  - changeSet:
+      id: 1695732083143-6
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: scenario_flow_entity
+  - changeSet:
+      id: 1695732083143-9
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: scenario_flow_entity_id
+            tableName: scenario_message_entity
+
+

@@ -1,11 +1,11 @@
 package it.ctinnovation.tdcKc.model.scenario.entitiy;
 
-import io.hypersistence.utils.hibernate.type.json.JsonType;
 import it.ctinnovation.tdcKc.model.abstractEntities.AbstractEntity;
+import it.ctinnovation.tdcKc.model.message.MessageObject;
+import it.ctinnovation.tdcKc.model.placemark.PayloadItem;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-import lombok.Data;
-import org.hibernate.annotations.Type;
 
 import java.util.List;
 import java.util.Objects;
@@ -14,51 +14,36 @@ import java.util.Objects;
 public class ScenarioMessageEntity extends AbstractEntity {
 
     @ManyToOne
-    ScenarioFlowEntity scenarioFlowEntity;
+    ScenarioEntity scenarioEntity;
 
-    private String name;
-
-    @Type(JsonType.class)
-    private List<DataItem> data;
+    @Embedded
+    MessageObject messageObject;
 
     //region Accessors
 
-    public ScenarioFlowEntity getScenarioFlowEntity() {
-        return scenarioFlowEntity;
+    public ScenarioEntity getScenarioEntity() {
+        return scenarioEntity;
     }
 
-    public void setScenarioFlowEntity(ScenarioFlowEntity scenarioFlowEntity) {
-        this.scenarioFlowEntity = scenarioFlowEntity;
+    public void setScenarioEntity(ScenarioEntity scenarioEntity) {
+        this.scenarioEntity = scenarioEntity;
     }
 
-    public String getName() {
-        return name;
+    public MessageObject getMessageObject() {
+        return messageObject;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<DataItem> getData() {
-        return data;
-    }
-
-    public void setData(List<DataItem> data) {
-        this.data = data;
+    public void setMessageObject(MessageObject messageObject) {
+        this.messageObject = messageObject;
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        ScenarioMessageEntity that = (ScenarioMessageEntity) o;
-        return Objects.equals(getId(), that.getId());
+    public String toString() {
+        return "ScenarioMessageEntity{" +
+            "scenarioEntity=" + scenarioEntity +
+            ", messageObject=" + messageObject +
+            '}';
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), getId());
-    }
     //endregion
 }

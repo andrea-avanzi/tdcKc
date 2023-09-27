@@ -34,8 +34,11 @@ public class Provvedimento {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",timezone = "CET")
     Date dataOttimizzata;
     String numElaborazioneDiagnostica;
+    @Column(length=4096)
     String notaProvvedimento;
+    @Column(length=4096)
     String noteProvvedimentoUtente;
+    @Column(length=4096)
     String noteValidazioneProvvedimento;
     String descriziooneAnomalia;
     String valoreAnomalia;
@@ -48,6 +51,7 @@ public class Provvedimento {
     String autoreUltimaRilevazioneAnomalia;
     String codiceAvvisoSapAnomalia;
     String statoAnomalia;
+    @Column(length=4096)
     String notaAnomalia;
     String richiedeFuoriServizio;
     @Column(columnDefinition = "TEXT")

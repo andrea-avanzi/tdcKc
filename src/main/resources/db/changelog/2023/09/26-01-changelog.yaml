@@ -1,0 +1,61 @@
+databaseChangeLog:
+    -   changeSet:
+            id: 1695720286612-3
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   createTable:
+                        columns:
+                            -   column:
+                                    autoIncrement: true
+                                    constraints:
+                                        nullable: false
+                                        primaryKey: true
+                                        primaryKeyName: pk_scenariologentity
+                                    name: id
+                                    type: BIGINT
+                            -   column:
+                                    name: key
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: name
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: description
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: starting_time
+                                    type: DATETIME
+                            -   column:
+                                    name: itarations
+                                    type: INT
+                        tableName: scenario_log_entity
+    -   changeSet:
+            id: 1695720286612-6
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   dropColumn:
+                        columnName: status_thresholds
+                        tableName: placemark_attribute_search
+    -   changeSet:
+            id: 1695720286612-1
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   addNotNullConstraint:
+                        columnDataType: INT
+                        columnName: interval
+                        tableName: scenario_message_entity
+                        validate: true
+    -   changeSet:
+            id: 1695720286612-2
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   addNotNullConstraint:
+                        columnDataType: INT
+                        columnName: iterations
+                        tableName: scenario_message_entity
+                        validate: true
+

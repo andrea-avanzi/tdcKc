@@ -28,34 +28,6 @@ public class ScenarioServiceImpl implements ScenarioService {
     final ScenarioMessageEntityRepository scenarioMessageRepository;
     final ScenarioEntityRepository scenarioEntityRepository;
 
-    @Override
-    public void saveScenario(MultipartFile file) throws IOException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        //List<ScenarioMessage> messages = new ArrayList<>();
-        List<ScenarioMessageEntity> messages = new ArrayList<>();
-
-        try (InputStream inputStream = file.getInputStream()) {
-            // Read the entire content as a byte array
-            byte[] contentBytes = inputStream.readAllBytes();
-            // Convert the byte array to a String
-            String contentWithoutCommas = new String(contentBytes, StandardCharsets.UTF_8);
-            //JsonNode jsonNode = objectMapper.readTree(content);
-            JsonNode jsonNode = objectMapper.readTree(contentWithoutCommas);
-            if (jsonNode.isArray()) {
-                // Unmarshal each object in the JSON array into a Message object
-                for (JsonNode node : jsonNode) {
-                    ScenarioMessageEntity message = objectMapper.treeToValue(node, ScenarioMessageEntity.class);
-                    messages.add(message);
-                    log.info(message.toString());
-                }
-            }
-        } catch (IOException e) {
-            log.error("Error reading file", e);
-        }
-        scenarioMessageRepository.deleteAll();
-        scenarioMessageRepository.saveAll(messages);
-        log.info("Scenario saved");
-    }
 
     @Transactional(readOnly = true)
     public List<ScenarioEntity> read() {

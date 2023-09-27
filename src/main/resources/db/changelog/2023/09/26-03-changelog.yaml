@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1695737586543-1
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - modifyDataType:
+            columnName: description
+            newDataType: VARCHAR(4096)
+            tableName: scenario_entity
+

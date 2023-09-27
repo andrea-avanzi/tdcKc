@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ScenarioService {
-    void saveScenario(MultipartFile file) throws IOException;
     List<ScenarioEntity> read();
     ScenarioEntity create (ScenarioEntity companyRole);
     ScenarioEntity update (ScenarioEntity scenarioEntity);

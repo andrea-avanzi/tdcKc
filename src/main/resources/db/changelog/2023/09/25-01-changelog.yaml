@@ -1,0 +1,80 @@
+databaseChangeLog:
+    -   changeSet:
+            id: 1695659919349-5
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   addColumn:
+                        columns:
+                            -   column:
+                                    name: description
+                                    type: VARCHAR(255)
+                        tableName: scenario_entity
+    -   changeSet:
+            id: 1695659919349-6
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   addColumn:
+                        columns:
+                            -   column:
+                                    name: interval
+                                    type: INT
+                            -   column:
+                                    name: iterations
+                                    type: INT
+                            -   column:
+                                    name: messages
+                                    type: json
+                            -   column:
+                                    name: placemark
+                                    type: VARCHAR(255)
+                        tableName: scenario_message_entity
+    -   changeSet:
+            id: 1695659919349-14
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   dropColumn:
+                        columnName: data
+                        tableName: scenario_message_entity
+                -   dropColumn:
+                        columnName: name
+                        tableName: scenario_message_entity
+    -   changeSet:
+            id: 1695659919349-1
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   modifyDataType:
+                        columnName: nota_anomalia
+                        newDataType: VARCHAR(4096)
+                        tableName: provvedimento
+    -   changeSet:
+            id: 1695659919349-2
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   modifyDataType:
+                        columnName: nota_provvedimento
+                        newDataType: VARCHAR(4096)
+                        tableName: provvedimento
+    -   changeSet:
+            id: 1695659919349-3
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   modifyDataType:
+                        columnName: note_provvedimento_utente
+                        newDataType: VARCHAR(4096)
+                        tableName: provvedimento
+    -   changeSet:
+            id: 1695659919349-4
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   modifyDataType:
+                        columnName: note_validazione_provvedimento
+                        newDataType: VARCHAR(4096)
+                        tableName: provvedimento
+

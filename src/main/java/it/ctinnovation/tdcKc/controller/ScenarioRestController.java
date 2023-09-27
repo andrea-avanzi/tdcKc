@@ -18,12 +18,12 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class ScenarioRestController {
 
-    final ScenarioServiceImpl scenarioService;
+    //final ScenarioServiceImpl scenarioService;
 
     @PostMapping("/uploadMessages")
     public ResponseEntity<String> upload(@RequestParam("file") MultipartFile file) throws IOException {
             // Validate the file and ID
-            scenarioService.saveScenario(file);
+            //scenarioService.saveScenario(file);
             // Process the file upload
 
             // Update the entity with the file

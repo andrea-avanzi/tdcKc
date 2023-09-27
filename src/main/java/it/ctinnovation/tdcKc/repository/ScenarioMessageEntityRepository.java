@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface ScenarioMessageEntityRepository extends JpaRepository<ScenarioMessageEntity, Long> {
 
-    public List<ScenarioMessageEntity> findAllByName(String name);
 }

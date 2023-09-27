@@ -18,6 +18,7 @@
         <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
         <jackson-module-jakarta-xmlbind-annotation>2.15.2</jackson-module-jakarta-xmlbind-annotation>
         <hibernate.version>6.1.7.Final</hibernate.version>
+        <netfaker.version>1.7.0</netfaker.version>
 	</properties>
 	<dependencies>
         <dependency>
@@ -206,6 +207,11 @@
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>2.15.2</version>
+        </dependency>
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${netfaker.version}</version>
         </dependency>
     </dependencies>
 

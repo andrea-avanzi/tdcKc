@@ -2,9 +2,7 @@ package it.ctinnovation.tdcKc.model.placemark;
 
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.Type;
-import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 import java.util.Map;
@@ -44,6 +42,7 @@ public class PlacemarkAttributeSearch {
 
     @Type(JsonType.class)
     private Map<String, String> attributeName_i18n;
+
     private String attributeUpdatedAt;
 
     @Type(JsonType.class)
