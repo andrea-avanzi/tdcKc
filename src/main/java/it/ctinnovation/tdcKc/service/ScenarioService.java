@@ -1,9 +1,7 @@
 package it.ctinnovation.tdcKc.service;
 
-import it.ctinnovation.tdcKc.model.scenario.entitiy.ScenarioEntity;
-import org.springframework.web.multipart.MultipartFile;
+import it.ctinnovation.tdcKc.model.scenario.entity.ScenarioEntity;
 
-import java.io.IOException;
 import java.util.List;
 
 public interface ScenarioService {

@@ -1,0 +1,105 @@
+databaseChangeLog:
+    -   changeSet:
+            id: 1695828515650-1
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   createTable:
+                        columns:
+                            -   column:
+                                    autoIncrement: true
+                                    constraints:
+                                        nullable: false
+                                        primaryKey: true
+                                        primaryKeyName: pk_scenario_attribute
+                                    name: id
+                                    type: BIGINT
+                            -   column:
+                                    name: scenario_placemark_id
+                                    type: BIGINT
+                            -   column:
+                                    name: key
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: key_name
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: key_value
+                                    type: VARCHAR(255)
+                        tableName: scenario_attribute
+    -   changeSet:
+            id: 1695828515650-2
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   createTable:
+                        columns:
+                            -   column:
+                                    autoIncrement: true
+                                    constraints:
+                                        nullable: false
+                                        primaryKey: true
+                                        primaryKeyName: pk_scenario_placemark
+                                    name: id
+                                    type: BIGINT
+                            -   column:
+                                    name: scenario_entity_id
+                                    type: BIGINT
+                            -   column:
+                                    name: placemark_id
+                                    type: BIGINT
+                            -   column:
+                                    name: placemark_name
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: attribute_id
+                                    type: BIGINT
+                            -   column:
+                                    name: attribute_name
+                                    type: VARCHAR(255)
+                            -   column:
+                                    name: iterations
+                                    type: INT
+                            -   column:
+                                    name: interval
+                                    type: INT
+                        tableName: scenario_placemark
+    -   changeSet:
+            id: 1695828515650-3
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   addForeignKeyConstraint:
+                        baseColumnNames: scenario_placemark_id
+                        baseTableName: scenario_attribute
+                        constraintName: FK_SCENARIO_ATTRIBUTE_ON_SCENARIOPLACEMARK
+                        referencedColumnNames: id
+                        referencedTableName: scenario_placemark
+    -   changeSet:
+            id: 1695828515650-4
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   addForeignKeyConstraint:
+                        baseColumnNames: scenario_entity_id
+                        baseTableName: scenario_placemark
+                        constraintName: FK_SCENARIO_PLACEMARK_ON_SCENARIOENTITY
+                        referencedColumnNames: id
+                        referencedTableName: scenario_entity
+    -   changeSet:
+            id: 1695828515650-5
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   dropForeignKeyConstraint:
+                        baseTableName: scenario_message_entity
+                        constraintName: fk_scenariomessageentity_on_scenarioentity
+    -   changeSet:
+            id: 1695828515650-6
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   dropTable:
+                        cascadeConstraints: true
+                        tableName: scenario_message_entity
+

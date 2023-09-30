@@ -1,6 +1,6 @@
 package it.ctinnovation.tdcKc.repository;
 
-import it.ctinnovation.tdcKc.model.scenario.entitiy.ScenarioEntity;
+import it.ctinnovation.tdcKc.model.scenario.entity.ScenarioEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ScenarioEntityRepository extends JpaRepository<ScenarioEntity, Long> {

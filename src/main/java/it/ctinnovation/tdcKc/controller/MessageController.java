@@ -1,6 +1,5 @@
 package it.ctinnovation.tdcKc.controller;
 
-import it.ctinnovation.tdcKc.model.message.Message;
 import it.ctinnovation.tdcKc.model.message.MessageObject;
 import it.ctinnovation.tdcKc.model.message.MqttMessage;
 import it.ctinnovation.tdcKc.service.AsyncProcessMessage;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController

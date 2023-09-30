@@ -3,15 +3,10 @@ package it.ctinnovation.tdcKc.controller.pocterna;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreResult;
-import it.ctinnovation.tdcKc.model.attribute.Attribute;
 import it.ctinnovation.tdcKc.model.pocterna.AnomaliaAperta;
 import it.ctinnovation.tdcKc.service.pocterna.PocTernaService;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 import static ch.ralscha.extdirectspring.annotation.ExtDirectMethodType.STORE_READ;
 

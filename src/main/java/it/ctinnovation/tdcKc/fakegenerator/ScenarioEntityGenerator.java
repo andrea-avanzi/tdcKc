@@ -1,10 +1,9 @@
 package it.ctinnovation.tdcKc.fakegenerator;
 
-import it.ctinnovation.tdcKc.model.scenario.entitiy.ScenarioEntity;
+import it.ctinnovation.tdcKc.model.scenario.entity.ScenarioEntity;
 import it.ctinnovation.tdcKc.repository.ScenarioEntityRepository;
 import lombok.extern.slf4j.Slf4j;
 import net.datafaker.Faker;
-import org.eclipse.paho.client.mqttv3.logging.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.annotation.Order;
@@ -14,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.logging.Logger;
 
 @Component
 @Transactional

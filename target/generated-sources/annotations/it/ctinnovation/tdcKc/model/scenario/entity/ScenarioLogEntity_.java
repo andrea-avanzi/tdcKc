@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.model.scenario.entitiy;
+package it.ctinnovation.tdcKc.model.scenario.entity;
 
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.StaticMetamodel;

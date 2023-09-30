@@ -4,7 +4,7 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreResult;
-import it.ctinnovation.tdcKc.model.scenario.entitiy.ScenarioEntity;
+import it.ctinnovation.tdcKc.model.scenario.entity.ScenarioEntity;
 import it.ctinnovation.tdcKc.service.ScenarioService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

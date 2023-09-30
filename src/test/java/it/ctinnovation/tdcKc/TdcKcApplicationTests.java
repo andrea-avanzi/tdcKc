@@ -6,7 +6,6 @@ import it.ctinnovation.tdcKc.model.KeyCloakResponse;
 import it.ctinnovation.tdcKc.model.message.Message;
 import it.ctinnovation.tdcKc.model.message.MqttMessage;
 import it.ctinnovation.tdcKc.model.pocterna.AnomaliaAperta;
-import it.ctinnovation.tdcKc.model.scenario.entitiy.ScenarioEntity;
 import it.ctinnovation.tdcKc.repository.ScenarioEntityRepository;
 import it.ctinnovation.tdcKc.repository.pocterna.AnomalieAperteRepository;
 import it.ctinnovation.tdcKc.security.JwtAuthConverterProperties;

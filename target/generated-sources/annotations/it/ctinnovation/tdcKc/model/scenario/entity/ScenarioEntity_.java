@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.model.scenario.entitiy;
+package it.ctinnovation.tdcKc.model.scenario.entity;
 
 import jakarta.persistence.metamodel.SingularAttribute;
 import jakarta.persistence.metamodel.StaticMetamodel;
@@ -8,11 +8,11 @@ import javax.annotation.processing.Generated;
 @StaticMetamodel(ScenarioEntity.class)
 public abstract class ScenarioEntity_ extends it.ctinnovation.tdcKc.model.abstractEntities.AbstractEntity_ {
 
-	public static volatile SingularAttribute<ScenarioEntity, String> Description;
 	public static volatile SingularAttribute<ScenarioEntity, String> name;
+	public static volatile SingularAttribute<ScenarioEntity, String> description;
 
-	public static final String DESCRIPTION = "Description";
 	public static final String NAME = "name";
+	public static final String DESCRIPTION = "description";
 
 }
 

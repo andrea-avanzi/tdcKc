@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1695830345343-1
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - createTable:
+            columns:
+              - column:
+                  autoIncrement: true
+                  constraints:
+                    nullable: false
+                    primaryKey: true
+                    primaryKeyName: pk_scenario_keyvalue
+                  name: id
+                  type: BIGINT
+              - column:
+                  name: scenario_placemark_id
+                  type: BIGINT
+              - column:
+                  name: key
+                  type: VARCHAR(255)
+              - column:
+                  name: key_name
+                  type: VARCHAR(255)
+              - column:
+                  name: key_value
+                  type: VARCHAR(255)
+            tableName: scenario_keyvalue
+  - changeSet:
+      id: 1695830345343-2
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addForeignKeyConstraint:
+            baseColumnNames: scenario_placemark_id
+            baseTableName: scenario_keyvalue
+            constraintName: FK_SCENARIO_KEYVALUE_ON_SCENARIOPLACEMARK
+            referencedColumnNames: id
+            referencedTableName: scenario_placemark
+  - changeSet:
+      id: 1695830345343-3
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropForeignKeyConstraint:
+            baseTableName: scenario_attribute
+            constraintName: fk_scenario_attribute_on_scenarioplacemark
+  - changeSet:
+      id: 1695830345343-4
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropTable:
+            cascadeConstraints: true
+            tableName: scenario_attribute
+
