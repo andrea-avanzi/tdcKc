@@ -24,7 +24,10 @@ public class ScenarioPlacemarkController {
 
     @ExtDirectMethod(STORE_READ)
     public ExtDirectStoreResult<ScenarioPlacemarkDto> read(ExtDirectStoreReadRequest storeRequest) {
-        List<ScenarioPlacemarkDto> data = scenarioPlacemarkService.read();
+        Long scenarioId=null;
+        if(storeRequest.getParams()!=null && storeRequest.getParams().containsKey("scenarioId"))
+            scenarioId=Long.parseLong(storeRequest.getParams().get("scenarioId").toString());
+        List<ScenarioPlacemarkDto> data = scenarioPlacemarkService.read(scenarioId);
         return new ExtDirectStoreResult<>(data.size(), data);
     }
 

@@ -1,5 +1,8 @@
 package it.ctinnovation.tdcKc.model.attribute;
 
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Level {
     private Object value;
     private double min;

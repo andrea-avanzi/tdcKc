@@ -23,7 +23,10 @@ public class ScenarioKeyValueController {
 
     @ExtDirectMethod(STORE_READ)
     public ExtDirectStoreResult<ScenarioKeyValueDto> read(ExtDirectStoreReadRequest storeRequest) {
-        List<ScenarioKeyValueDto> data = scenarioKeyValueService.read();
+        Long placemarkId=null;
+        if(storeRequest.getParams()!=null && storeRequest.getParams().containsKey("placemarkId"))
+            placemarkId=Long.parseLong(storeRequest.getParams().get("placemarkId").toString());
+        List<ScenarioKeyValueDto> data = scenarioKeyValueService.read(placemarkId);
         return new ExtDirectStoreResult<>(data.size(), data);
     }
 

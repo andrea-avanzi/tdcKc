@@ -37,7 +37,12 @@ public class ScenarioServiceImpl implements ScenarioService {
     @Transactional
     public ScenarioEntity update(ScenarioEntity scenarioEntity) {
         ScenarioEntity scenario = scenarioEntityRepository.findById(scenarioEntity.getId()).orElseThrow(NoSuchElementException::new);
-        scenario.setName(scenarioEntity.getName());
+        if(scenarioEntity.getName() != null)
+            scenario.setName(scenarioEntity.getName());
+        if(scenarioEntity.getDescription() != null)
+            scenario.setDescription(scenarioEntity.getDescription());
+
+
         return scenarioEntityRepository.save(scenario);
     }
 

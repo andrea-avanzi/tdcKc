@@ -23,9 +23,12 @@ public class ScenarioKeyValueServiceImpl implements ScenarioKeyValueService {
     private final ScenarioKeyValueMapper scenarioKeyValueMapper;
 
     @Override
-    public List<ScenarioKeyValueDto> read() {
+    public List<ScenarioKeyValueDto> read(Long placemarkId) {
         log.debug("Request to get all ScenarioKeyValue");
-        return scenarioKeyValueRepository.findAll().stream().map(scenarioKeyValueMapper::toDto).toList();
+        if(placemarkId == null)
+            return scenarioKeyValueRepository.findAll().stream().map(scenarioKeyValueMapper::toDto).toList();
+        else
+            return scenarioKeyValueRepository.readKeyValues(placemarkId).stream().map(scenarioKeyValueMapper::toDto).toList();
     }
 
     @Override
@@ -42,11 +45,12 @@ public class ScenarioKeyValueServiceImpl implements ScenarioKeyValueService {
     public ScenarioKeyValueDto update(ScenarioKeyValueDto scenarioKeyValueDto) {
         log.debug("Request to update ScenarioKeyValue : {}", scenarioKeyValueDto);
         ScenarioKeyValue scenarioKeyValue = scenarioKeyValueRepository.getReferenceById(scenarioKeyValueDto.id());
-        scenarioKeyValue = scenarioKeyValueMapper.partialUpdate(scenarioKeyValueDto, scenarioKeyValue);
-        if(scenarioKeyValueDto.id() != null) {
+
+        if(scenarioKeyValueDto.id() != null && scenarioKeyValueDto.scenarioPlacemarkId() != null) {
             ScenarioPlacemark scenarioPlacemark = scenarioPlacemarkRepository.getReferenceById(scenarioKeyValueDto.scenarioPlacemarkId());
             scenarioKeyValue.setScenarioPlacemark(scenarioPlacemark);
         }
+        scenarioKeyValue = scenarioKeyValueMapper.partialUpdate(scenarioKeyValueDto, scenarioKeyValue);
         scenarioKeyValue = scenarioKeyValueRepository.save(scenarioKeyValue);
         return scenarioKeyValueMapper.toDto(scenarioKeyValue);
     }

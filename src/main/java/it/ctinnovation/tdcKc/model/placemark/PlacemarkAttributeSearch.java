@@ -1,5 +1,6 @@
 package it.ctinnovation.tdcKc.model.placemark;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
@@ -207,6 +208,8 @@ public class PlacemarkAttributeSearch {
     public void setAdditionalProperties(Object additionalProperties) {
         this.additionalProperties = additionalProperties;
     }
+
+
 
 }
 

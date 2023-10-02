@@ -40,13 +40,15 @@ public class ScenarioDirectController {
     }
 
     @ExtDirectMethod(ExtDirectMethodType.STORE_MODIFY)
-    public ScenarioEntity create(ScenarioEntity companyRole) {
-        return scenarioService.create(companyRole);
+    public ScenarioEntity create(ScenarioEntity scenarioEntity) {
+
+        return scenarioService.create(scenarioEntity);
     }
 
     @ExtDirectMethod(ExtDirectMethodType.STORE_MODIFY)
-    public ScenarioEntity update(ScenarioEntity companyRole) {
-        return scenarioService.update(companyRole);
+    public ScenarioEntity update(ScenarioEntity scenarioEntity) {
+
+        return scenarioService.update(scenarioEntity);
     }
 
     @ExtDirectMethod(STORE_MODIFY)
