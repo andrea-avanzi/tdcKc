@@ -11,5 +11,6 @@ public interface ScenarioService {
     void destroy(List<ScenarioEntity> companyRoles);
 
     ScenarioEntity getScenarioReference(Long id);
+    void readAndSendScenario(Long scenarioId);
 
 }

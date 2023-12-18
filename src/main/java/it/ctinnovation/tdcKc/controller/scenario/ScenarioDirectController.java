@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.controller;
+package it.ctinnovation.tdcKc.controller.scenario;
 
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
@@ -47,7 +47,6 @@ public class ScenarioDirectController {
 
     @ExtDirectMethod(ExtDirectMethodType.STORE_MODIFY)
     public ScenarioEntity update(ScenarioEntity scenarioEntity) {
-
         return scenarioService.update(scenarioEntity);
     }
 

@@ -8,6 +8,7 @@ import org.mapstruct.*;
 public interface ScenarioPlacemarkMapper {
     @Mapping(source = "placemarkAttributeSearchTitle", target = "placemarkAttributeSearch.title")
     @Mapping(source = "placemarkAttributeSearchId", target = "placemarkAttributeSearch.id")
+    @Mapping(source = "publicId", target = "placemarkAttributeSearch.publicId")
     @Mapping(source = "scenarioEntityName", target = "scenarioEntity.name")
     @Mapping(source = "scenarioEntityId", target = "scenarioEntity.id")
     ScenarioPlacemark toEntity(ScenarioPlacemarkDto scenarioPlacemarkDto);

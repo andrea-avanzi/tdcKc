@@ -9,6 +9,9 @@ import lombok.Setter;
 @Table(name = "scenario_entity")
 public class ScenarioEntity extends AbstractEntity {
     String name;
+    Integer iterations;
+    Integer interval;
+
     @Column(length = 4096)
     String description;
 
@@ -18,6 +21,22 @@ public class ScenarioEntity extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getIterations() {
+        return iterations;
+    }
+
+    public void setIterations(Integer iterations) {
+        this.iterations = iterations;
+    }
+
+    public Integer getInterval() {
+        return interval;
+    }
+
+    public void setInterval(Integer interval) {
+        this.interval = interval;
     }
 
     public String getDescription() {

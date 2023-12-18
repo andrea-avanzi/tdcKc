@@ -5,7 +5,6 @@ import java.io.Serializable;
 /**
  * DTO for {@link it.ctinnovation.tdcKc.model.scenario.entity.ScenarioPlacemark}
  */
-public record ScenarioPlacemarkDto(Long id, Long scenarioEntityId, String scenarioEntityName,
-                                   Long placemarkAttributeSearchId, String placemarkAttributeSearchTitle,
-                                   Integer iterations, Integer interval) implements Serializable {
+public record ScenarioPlacemarkDto(Long id, String publicId,Long scenarioEntityId, String scenarioEntityName,
+                                   Long placemarkAttributeSearchId, String placemarkAttributeSearchTitle) implements Serializable {
 }

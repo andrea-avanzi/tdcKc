@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface PlacemarkAttributeSearchRepository extends JpaRepository<PlacemarkAttributeSearch, Long> {
     Optional<PlacemarkAttributeSearch> findByPublicId(String publicId);
+
+    PlacemarkAttributeSearch findByChannelIdAndPublicId(int channelId, String publicId);
 }

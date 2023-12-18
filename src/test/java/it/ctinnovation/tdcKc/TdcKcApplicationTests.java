@@ -3,6 +3,7 @@ package it.ctinnovation.tdcKc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.ctinnovation.tdcKc.config.properties.MqttProperties;
 import it.ctinnovation.tdcKc.model.KeyCloakResponse;
+import it.ctinnovation.tdcKc.model.attribute.Attribute;
 import it.ctinnovation.tdcKc.model.message.Message;
 import it.ctinnovation.tdcKc.model.message.MqttMessage;
 import it.ctinnovation.tdcKc.model.pocterna.AnomaliaAperta;
@@ -12,6 +13,7 @@ import it.ctinnovation.tdcKc.security.JwtAuthConverterProperties;
 import it.ctinnovation.tdcKc.service.AuthorizationService;
 import it.ctinnovation.tdcKc.service.MqttService;
 import it.ctinnovation.tdcKc.service.ScenarioService;
+import it.ctinnovation.tdcKc.service.TheaterService;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -43,17 +45,22 @@ class TdcKcApplicationTests {
     @Autowired
     ScenarioService scenarioService;
 
-
-
     @Autowired
     ScenarioEntityRepository scenarioEntityRepository;
 
+    @Autowired
+    TheaterService theaterService;
 
 
 
     @Test
 	void contextLoads() {
 	}
+
+    @Test
+    void testReadAttributes() throws JsonProcessingException {
+        List<Attribute> listAttributes=theaterService.getAttributes();
+    }
 
     @Test
     @Transactional

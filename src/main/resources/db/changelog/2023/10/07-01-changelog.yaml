@@ -1,0 +1,27 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1696689641925-1
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - addColumn:
+            columns:
+              - column:
+                  name: cron
+                  type: VARCHAR(255)
+            tableName: scenario_log_entity
+  - changeSet:
+      id: 1696689641925-10
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+        - dropColumn:
+            columnName: description
+            tableName: scenario_log_entity
+        - dropColumn:
+            columnName: itarations
+            tableName: scenario_log_entity
+        - dropColumn:
+            columnName: key
+            tableName: scenario_log_entity
+

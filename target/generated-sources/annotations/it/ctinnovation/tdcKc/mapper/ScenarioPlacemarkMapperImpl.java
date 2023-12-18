@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2023-09-29T16:48:22+0200",
+    date = "2023-10-08T10:26:59+0200",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 17.0.3 (Eclipse Adoptium)"
 )
 @Component
@@ -26,8 +26,6 @@ public class ScenarioPlacemarkMapperImpl implements ScenarioPlacemarkMapper {
         scenarioPlacemark.setPlacemarkAttributeSearch( scenarioPlacemarkDtoToPlacemarkAttributeSearch( scenarioPlacemarkDto ) );
         scenarioPlacemark.setScenarioEntity( scenarioPlacemarkDtoToScenarioEntity( scenarioPlacemarkDto ) );
         scenarioPlacemark.setId( scenarioPlacemarkDto.id() );
-        scenarioPlacemark.setIterations( scenarioPlacemarkDto.iterations() );
-        scenarioPlacemark.setInterval( scenarioPlacemarkDto.interval() );
 
         return scenarioPlacemark;
     }
@@ -40,21 +38,19 @@ public class ScenarioPlacemarkMapperImpl implements ScenarioPlacemarkMapper {
 
         String placemarkAttributeSearchTitle = null;
         Long placemarkAttributeSearchId = null;
+        String publicId = null;
         String scenarioEntityName = null;
         Long scenarioEntityId = null;
         Long id = null;
-        Integer iterations = null;
-        Integer interval = null;
 
         placemarkAttributeSearchTitle = scenarioPlacemarkPlacemarkAttributeSearchTitle( scenarioPlacemark );
         placemarkAttributeSearchId = scenarioPlacemarkPlacemarkAttributeSearchId( scenarioPlacemark );
+        publicId = scenarioPlacemarkPlacemarkAttributeSearchPublicId( scenarioPlacemark );
         scenarioEntityName = scenarioPlacemarkScenarioEntityName( scenarioPlacemark );
         scenarioEntityId = scenarioPlacemarkScenarioEntityId( scenarioPlacemark );
         id = scenarioPlacemark.getId();
-        iterations = scenarioPlacemark.getIterations();
-        interval = scenarioPlacemark.getInterval();
 
-        ScenarioPlacemarkDto scenarioPlacemarkDto = new ScenarioPlacemarkDto( id, scenarioEntityId, scenarioEntityName, placemarkAttributeSearchId, placemarkAttributeSearchTitle, iterations, interval );
+        ScenarioPlacemarkDto scenarioPlacemarkDto = new ScenarioPlacemarkDto( id, publicId, scenarioEntityId, scenarioEntityName, placemarkAttributeSearchId, placemarkAttributeSearchTitle );
 
         return scenarioPlacemarkDto;
     }
@@ -76,12 +72,6 @@ public class ScenarioPlacemarkMapperImpl implements ScenarioPlacemarkMapper {
         if ( scenarioPlacemarkDto.id() != null ) {
             scenarioPlacemark.setId( scenarioPlacemarkDto.id() );
         }
-        if ( scenarioPlacemarkDto.iterations() != null ) {
-            scenarioPlacemark.setIterations( scenarioPlacemarkDto.iterations() );
-        }
-        if ( scenarioPlacemarkDto.interval() != null ) {
-            scenarioPlacemark.setInterval( scenarioPlacemarkDto.interval() );
-        }
 
         return scenarioPlacemark;
     }
@@ -95,6 +85,7 @@ public class ScenarioPlacemarkMapperImpl implements ScenarioPlacemarkMapper {
 
         placemarkAttributeSearch.setTitle( scenarioPlacemarkDto.placemarkAttributeSearchTitle() );
         placemarkAttributeSearch.setId( scenarioPlacemarkDto.placemarkAttributeSearchId() );
+        placemarkAttributeSearch.setPublicId( scenarioPlacemarkDto.publicId() );
 
         return placemarkAttributeSearch;
     }
@@ -142,6 +133,21 @@ public class ScenarioPlacemarkMapperImpl implements ScenarioPlacemarkMapper {
         return id;
     }
 
+    private String scenarioPlacemarkPlacemarkAttributeSearchPublicId(ScenarioPlacemark scenarioPlacemark) {
+        if ( scenarioPlacemark == null ) {
+            return null;
+        }
+        PlacemarkAttributeSearch placemarkAttributeSearch = scenarioPlacemark.getPlacemarkAttributeSearch();
+        if ( placemarkAttributeSearch == null ) {
+            return null;
+        }
+        String publicId = placemarkAttributeSearch.getPublicId();
+        if ( publicId == null ) {
+            return null;
+        }
+        return publicId;
+    }
+
     private String scenarioPlacemarkScenarioEntityName(ScenarioPlacemark scenarioPlacemark) {
         if ( scenarioPlacemark == null ) {
             return null;
@@ -182,6 +188,9 @@ public class ScenarioPlacemarkMapperImpl implements ScenarioPlacemarkMapper {
         }
         if ( scenarioPlacemarkDto.placemarkAttributeSearchId() != null ) {
             mappingTarget.setId( scenarioPlacemarkDto.placemarkAttributeSearchId() );
+        }
+        if ( scenarioPlacemarkDto.publicId() != null ) {
+            mappingTarget.setPublicId( scenarioPlacemarkDto.publicId() );
         }
     }
 

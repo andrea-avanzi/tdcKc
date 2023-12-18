@@ -1,9 +1,9 @@
 package it.ctinnovation.tdcKc.quartz;
 
+import it.ctinnovation.tdcKc.service.ScenarioLogEntityService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.SchedulerException;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/quartz")
 @Slf4j
 @RequiredArgsConstructor
-public class QuartzController {
+public class ScenarioQuartzController {
 
-    private final QuartzService quartzService;
+    private final ScenarioQuartzService quartzService;
+    private final ScenarioLogEntityService scenarioLogEntityService;
 
     /**
      * la cronExpression deve essere del tipo "0/5 * * * * ?" (ogni 5 secondi)
@@ -26,26 +27,28 @@ public class QuartzController {
      * oppure "0 0 0 ? * 6#3" (il terzo sabato del mese)
      * oppure "0 0 0 ? * 6L 2016-2018" (l'ultimo sabato del mese dal 2016 al 2018)
      *
-     * @param jobName
+     * @param scenarioId
      * @param cronExpression
      * @return
      */
     @RequestMapping("/start")
-    public String startJob(@RequestParam String jobName, @RequestParam String cronExpression) {
-        log.info("Schedulo il job {} con cron {}", jobName, cronExpression);
+    public String startJob(@RequestParam Long scenarioId, @RequestParam String cronExpression) {
+        log.info("Schedulo il job {} con cron {}", scenarioId, cronExpression);
         try {
-            quartzService.scheduleJob(jobName, cronExpression);
-            return "Job " + jobName + " schedulato con successo!";
+            scenarioLogEntityService.createLog(scenarioId, cronExpression);
+            quartzService.scheduleJob(scenarioId, cronExpression);
+            return "Job relativo allo scenario" + scenarioId + " schedulato con successo!";
         } catch (SchedulerException e) {
             return "Errore nello schedulare il job: " + e.getMessage();
         }
     }
 
-    @PostMapping("/stop")
-    public String stopJob(@RequestParam String jobName) {
+    @RequestMapping("/stop")
+    public String stopJob(@RequestParam Long scenarioId) {
         try {
-            quartzService.unscheduleJob(jobName);
-            return "Job " + jobName + " interrotto con successo!";
+            quartzService.unscheduleJob(scenarioId);
+            scenarioLogEntityService.removeLog(scenarioId);
+            return "Job relativo allo scenario" + scenarioId + " interrotto con successo!";
         } catch (SchedulerException e) {
             return "Errore nell'interruzione del job: " + e.getMessage();
         }

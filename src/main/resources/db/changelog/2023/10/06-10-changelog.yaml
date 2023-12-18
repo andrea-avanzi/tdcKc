@@ -1,0 +1,12 @@
+databaseChangeLog:
+    -   changeSet:
+            id: 1695995896369-7
+            author: marcopancotti (generated)
+            objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+            changes:
+                -   dropColumn:
+                        columnName: iterations
+                        tableName: scenario_placemark
+                -   dropColumn:
+                        columnName: interval
+                        tableName: scenario_placemark

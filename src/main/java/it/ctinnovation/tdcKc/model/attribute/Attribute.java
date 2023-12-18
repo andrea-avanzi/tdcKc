@@ -9,12 +9,17 @@ import org.hibernate.type.SqlTypes;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Entity
+@Table(
+    uniqueConstraints= @UniqueConstraint(columnNames={"channelId", "name"})
+)
 public class Attribute {
     @Id
     private Long id;
 
+    @Column(nullable = false)
     private int channelId;
 
     @Type(JsonType.class)
@@ -34,6 +39,7 @@ public class Attribute {
     private boolean createNotificationEventsOnDanger;
     private String createdAt;
     private String updatedAt;
+
     private String name;
     private String description;
 
@@ -135,4 +141,18 @@ public class Attribute {
         this.description = description;
     }
     //endregion
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Attribute attribute = (Attribute) o;
+        return Objects.equals(getId(), attribute.getId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

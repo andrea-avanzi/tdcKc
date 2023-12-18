@@ -21,6 +21,9 @@ spring:
     jpa:
         show-sql: true
         hibernate.ddl-auto: validate
+        properties:
+          hibernate:
+              format_sql: false
     servlet:
         multipart:
             enabled: true
@@ -32,6 +35,9 @@ spring:
           fail-on-empty-beans: false
     liquibase:
         change-log: db/changelog/db.changelog-master.xml
+    quartz:
+        job-store-type: memory
+
     security:
         oauth2:
             resourceserver:
@@ -42,6 +48,9 @@ spring:
 logging:
     level:
         org.springframework.security: DEBUG
+        it.ctinnovation: DEBUG
+        org.hibernate.SQL: WARN
+        org.hibernate.type: WARN
 
 it:
     ctinnovation:
@@ -102,3 +111,8 @@ mqtt:
     url: tcp://test.mosquitto.org:1883
     clientId: TheatherDemoConf
     defaultTopic: fd875cf3-2865-4442-acf5-6b4c19d92a9a/demo
+
+using:
+    spring:
+        schedulerFactory:true
+

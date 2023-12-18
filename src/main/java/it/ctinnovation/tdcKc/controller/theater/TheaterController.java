@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.controller;
+package it.ctinnovation.tdcKc.controller.theater;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import it.ctinnovation.tdcKc.model.attribute.Attribute;

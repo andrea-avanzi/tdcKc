@@ -22,4 +22,9 @@
     <include file="db/changelog/2023/09/27-01-changelog.yaml"/>
     <include file="db/changelog/2023/09/27-02-changelog.yaml"/>
     <include file="db/changelog/2023/09/29-01-changelog.yaml"/>
+    <include file="db/changelog/2023/10/05-10-changelog.yaml"/>
+    <include file="db/changelog/2023/10/06-10-changelog.yaml"/>
+    <include file="db/changelog/2023/10/07-01-changelog.yaml"/>
+    <include file="db/changelog/2023/10/08-10-changelog.yaml"/>
+    <include file="db/changelog/2023/10/08-11-changelog.yaml"/>
 </databaseChangeLog>

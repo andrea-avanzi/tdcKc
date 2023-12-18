@@ -66,8 +66,6 @@ public class AsyncProcessMessage {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-
-
         }, 0, interval>0?interval:1, TimeUnit.SECONDS);
     }
 }

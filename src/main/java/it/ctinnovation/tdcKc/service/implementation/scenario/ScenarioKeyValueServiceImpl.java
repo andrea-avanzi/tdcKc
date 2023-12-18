@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.service.implementation;
+package it.ctinnovation.tdcKc.service.implementation.scenario;
 
 import it.ctinnovation.tdcKc.mapper.ScenarioKeyValueMapper;
 import it.ctinnovation.tdcKc.model.scenario.dto.ScenarioKeyValueDto;
@@ -25,10 +25,13 @@ public class ScenarioKeyValueServiceImpl implements ScenarioKeyValueService {
     @Override
     public List<ScenarioKeyValueDto> read(Long placemarkId) {
         log.debug("Request to get all ScenarioKeyValue");
-        if(placemarkId == null)
+        if (placemarkId == null) {
+            log.info("Request to get all ScenarioKeyValue");
             return scenarioKeyValueRepository.findAll().stream().map(scenarioKeyValueMapper::toDto).toList();
-        else
+        } else {
+            log.info("Request to get all ScenarioKeyValue for placemarkId: {}", placemarkId);
             return scenarioKeyValueRepository.readKeyValues(placemarkId).stream().map(scenarioKeyValueMapper::toDto).toList();
+        }
     }
 
     @Override
@@ -46,13 +49,12 @@ public class ScenarioKeyValueServiceImpl implements ScenarioKeyValueService {
         log.debug("Request to update ScenarioKeyValue : {}", scenarioKeyValueDto);
         ScenarioKeyValue scenarioKeyValue = scenarioKeyValueRepository.getReferenceById(scenarioKeyValueDto.id());
 
-        if(scenarioKeyValueDto.id() != null && scenarioKeyValueDto.scenarioPlacemarkId() != null) {
+        if (scenarioKeyValueDto.id() != null && scenarioKeyValueDto.scenarioPlacemarkId() != null) {
             ScenarioPlacemark scenarioPlacemark = scenarioPlacemarkRepository.getReferenceById(scenarioKeyValueDto.scenarioPlacemarkId());
             scenarioKeyValue.setScenarioPlacemark(scenarioPlacemark);
         }
-        scenarioKeyValue = scenarioKeyValueMapper.partialUpdate(scenarioKeyValueDto, scenarioKeyValue);
-        scenarioKeyValue = scenarioKeyValueRepository.save(scenarioKeyValue);
-        return scenarioKeyValueMapper.toDto(scenarioKeyValue);
+        ScenarioKeyValue sk = scenarioKeyValueMapper.partialUpdate(scenarioKeyValueDto, scenarioKeyValue);
+        return scenarioKeyValueMapper.toDto(scenarioKeyValueRepository.save(sk));
     }
 
     @Override

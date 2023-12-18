@@ -19,8 +19,6 @@ public class ScenarioPlacemark extends AbstractEntity {
     @ManyToOne
     PlacemarkAttributeSearch    placemarkAttributeSearch;
 
-    Integer iterations;
-    Integer interval;
 
     public ScenarioEntity getScenarioEntity() {
         return scenarioEntity;
@@ -36,31 +34,5 @@ public class ScenarioPlacemark extends AbstractEntity {
 
     public void setPlacemarkAttributeSearch(PlacemarkAttributeSearch placemarkAttributeSearch) {
         this.placemarkAttributeSearch = placemarkAttributeSearch;
-    }
-
-    public Integer getIterations() {
-        return iterations;
-    }
-
-    public void setIterations(Integer iterations) {
-        this.iterations = iterations;
-    }
-
-    public Integer getInterval() {
-        return interval;
-    }
-
-    public void setInterval(Integer interval) {
-        this.interval = interval;
-    }
-
-    @Override
-    public String toString() {
-        return "ScenarioPlacemark{" +
-            "scenarioEntity=" + scenarioEntity +
-            ", placemarkAttributeSearch=" + placemarkAttributeSearch +
-            ", iterations=" + iterations +
-            ", interval=" + interval +
-            '}';
     }
 }

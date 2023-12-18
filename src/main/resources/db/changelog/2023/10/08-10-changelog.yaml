@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1696689641925-11
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+          - addNotNullConstraint:
+                tableName: placemark_attribute_search
+                columnName: channel_id
+                columnDataType: int
+          - addNotNullConstraint:
+                tableName: placemark_attribute_search
+                columnName: public_id
+                columnDataType: varchar(255)
+  - changeSet:
+      id: 1696689641925-12
+      author: marcopancotti (generated)
+      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+      changes:
+          - addUniqueConstraint:
+                columnNames: channel_id,public_id
+                constraintName: uk_channelId_publicId
+                tableName: placemark_attribute_search
+

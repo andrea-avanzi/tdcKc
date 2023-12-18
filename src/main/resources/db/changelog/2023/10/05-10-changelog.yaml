@@ -1,0 +1,15 @@
+databaseChangeLog:
+    - changeSet:
+        id: 1695995896369-6
+        author: marcopancotti (generated)
+        objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+        changes:
+            - addColumn:
+                  columns:
+                    - column:
+                        name: interval
+                        type: INT
+                    - column:
+                        name: iterations
+                        type: INT
+                  tableName: scenario_entity

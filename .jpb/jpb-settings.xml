@@ -10,6 +10,10 @@
             <java-class>io.hypersistence.utils.hibernate.type.json.JsonType</java-class>
             <sql-type>json</sql-type>
           </mapping-type>
+          <mapping-type sql-type-parameter="Nothing">
+            <java-class>java.lang.Object</java-class>
+            <sql-type>clob</sql-type>
+          </mapping-type>
         </mapping-types>
       </database-info>
     </database-infos>

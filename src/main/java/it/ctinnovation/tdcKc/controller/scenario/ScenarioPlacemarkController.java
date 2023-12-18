@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.controller;
+package it.ctinnovation.tdcKc.controller.scenario;
 
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;

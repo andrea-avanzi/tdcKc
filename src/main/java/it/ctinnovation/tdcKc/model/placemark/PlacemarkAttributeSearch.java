@@ -9,11 +9,19 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
+@Table(
+    uniqueConstraints= @UniqueConstraint(columnNames={"channelId", "publicId"})
+)
 public class PlacemarkAttributeSearch {
     @Id
     private Long id;
+
+    @Column(nullable = false)
     private int channelId;
+
+    @Column(nullable = false)
     private String publicId;
+
     private String assetId;
     private int attributeId;
 

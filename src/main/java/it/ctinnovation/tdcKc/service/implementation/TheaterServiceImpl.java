@@ -124,17 +124,33 @@ public class TheaterServiceImpl implements TheaterService {
     }
 
     @Override
+    @Transactional
     public List<Attribute> getAttributes() throws JsonProcessingException {
         RequestEntity<Void> request = createRequest("https://geo-demo.dev.ctinnovation.it/api/attributes");
         ResponseEntity<String> response = restTemplate.exchange(request, String.class);
-        TypeReference<List<Attribute>> attributeTypeReference = new TypeReference<List<Attribute>>() {};
+        TypeReference<List<Attribute>> attributeTypeReference = new TypeReference<>() {};
         List<Attribute> attributeList=  objectMapper.readValue(response.getBody(), attributeTypeReference);
-        attributeRepository.deleteAll();
-        attributeRepository.saveAll(attributeList);
+        //update the attribute table using the key composed by channelId and name
+        _updateAttributes(attributeList);
+        //attributeRepository.deleteAll();
+        //attributeRepository.saveAll(attributeList);
         return attributeList;
     }
 
+
+    private void _updateAttributes(List<Attribute> attributeList) {
+        for(Attribute attribute:attributeList){
+            Attribute attributeFromDb = attributeRepository.findByChannelIdAndName(attribute.getChannelId(), attribute.getName());
+            if(attributeFromDb!=null){
+                attribute.setId(attributeFromDb.getId());
+            }
+            log.info("Attribute: "+attribute.toString());
+            attributeRepository.save(attribute);
+        }
+    }
+
     @Override
+    @Transactional
     public List<PlacemarkAttributeSearch> getPlacemarks() throws JsonProcessingException {
         List<PlacemarkAttributeSearch> placemarkAttributeSearchList= new ArrayList<>();
         RequestEntity<Void> reduced = createRequest("https://geo-demo.dev.ctinnovation.it/api/search/stream?bbox=-174.541254&bbox=-62.866286&bbox=61.366711&bbox=71.2788");
@@ -147,9 +163,21 @@ public class TheaterServiceImpl implements TheaterService {
             ResponseEntity<String> resp = restTemplate.exchange(request, String.class);
             placemarkAttributeSearchList.add(objectMapper.readValue(resp.getBody(), PlacemarkAttributeSearch.class));
         }
-        placemarkAttributeSearchRepository.deleteAll();
-        placemarkAttributeSearchRepository.saveAll(placemarkAttributeSearchList);
+
+        _updatePlacemarks(placemarkAttributeSearchList);
+
         return placemarkAttributeSearchList;
+    }
+
+    private void _updatePlacemarks(List<PlacemarkAttributeSearch> placemarkAttributeSearchList) {
+        for(PlacemarkAttributeSearch placemarkAttributeSearch:placemarkAttributeSearchList){
+            PlacemarkAttributeSearch pas = placemarkAttributeSearchRepository.findByChannelIdAndPublicId(placemarkAttributeSearch.getChannelId(), placemarkAttributeSearch.getPublicId());
+            if(pas!=null){
+                placemarkAttributeSearch.setId(pas.getId());
+            }
+            log.info("Placemark: "+placemarkAttributeSearch.toString());
+            placemarkAttributeSearchRepository.save(placemarkAttributeSearch);
+        }
     }
 
     @Override

@@ -1,6 +1,5 @@
 package it.ctinnovation.tdcKc.config;
 
-import com.amazonaws.services.iotanalytics.model.ResourceConfiguration;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -12,7 +11,6 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -27,6 +25,8 @@ public class AppConfig implements WebMvcConfigurer {
     @Autowired
     private CorsConfigurationProperties corsConfigurationProperties;
 
+
+
     @Bean
     public RestTemplate getRestTemplate() {
         return new RestTemplate();
@@ -39,6 +39,7 @@ public class AppConfig implements WebMvcConfigurer {
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         return objectMapper;
     }
+
 
 
     @Override

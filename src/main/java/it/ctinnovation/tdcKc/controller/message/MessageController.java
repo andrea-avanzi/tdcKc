@@ -1,9 +1,11 @@
-package it.ctinnovation.tdcKc.controller;
+package it.ctinnovation.tdcKc.controller.message;
 
 import it.ctinnovation.tdcKc.model.message.MessageObject;
 import it.ctinnovation.tdcKc.model.message.MqttMessage;
+import it.ctinnovation.tdcKc.model.scenario.model.ScenarioPlacemarkMessage;
 import it.ctinnovation.tdcKc.service.AsyncProcessMessage;
 import it.ctinnovation.tdcKc.service.MqttService;
+import it.ctinnovation.tdcKc.service.ScenarioMessageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ public class MessageController {
 
     final MqttService mqttService;
     final AsyncProcessMessage asyncProcessMessage;
+    final ScenarioMessageService scenarioMessageService;
 
     @PostMapping(value = "/sendMessage")
     public void sendMessage(@RequestParam String placemark,
@@ -44,4 +47,13 @@ public class MessageController {
         response.put("status", "success");
         return response;
     }
+
+    @PostMapping("/processScenarioKeyValues")
+    public Map<String, String> processScenarioKeyValues(@RequestBody ScenarioPlacemarkMessage scenarioMessage) {
+        scenarioMessageService.saveMessages(scenarioMessage);
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "success");
+        return response;
+    }
+
 }

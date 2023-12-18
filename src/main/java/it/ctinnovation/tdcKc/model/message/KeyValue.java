@@ -1,5 +1,8 @@
 package it.ctinnovation.tdcKc.model.message;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class KeyValue {
     private String key;
     private String value; // Making this an Object to accommodate for different data types

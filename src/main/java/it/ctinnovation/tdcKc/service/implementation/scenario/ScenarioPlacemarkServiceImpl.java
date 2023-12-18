@@ -1,4 +1,4 @@
-package it.ctinnovation.tdcKc.service.implementation;
+package it.ctinnovation.tdcKc.service.implementation.scenario;
 
 import it.ctinnovation.tdcKc.mapper.ScenarioPlacemarkMapper;
 import it.ctinnovation.tdcKc.model.placemark.PlacemarkAttributeSearch;
@@ -50,18 +50,12 @@ public class ScenarioPlacemarkServiceImpl implements ScenarioPlacemarkService {
     public ScenarioPlacemarkDto update(ScenarioPlacemarkDto scenarioPlacemarkDto) {
         log.debug("Request to update ScenarioPlacemark : {}", scenarioPlacemarkDto);
         ScenarioPlacemark scenarioPlacemark = scenarioPlacemarkRepository.getReferenceById(scenarioPlacemarkDto.id());
-        scenarioPlacemark.setInterval(scenarioPlacemarkDto.interval());
-        scenarioPlacemark.setIterations(scenarioPlacemarkDto.iterations());
-        //scenarioPlacemark = scenarioPlacemarkMapper.partialUpdate(scenarioPlacemarkDto, scenarioPlacemark);
-//        if (scenarioPlacemarkDto.scenarioEntityId() != null) {
-//            ScenarioEntity scenarioEntity = scenarioEntityRepository.getReferenceById(scenarioPlacemarkDto.scenarioEntityId());
-//            scenarioPlacemark.setScenarioEntity(scenarioEntity);
-//        }
         if (scenarioPlacemarkDto.placemarkAttributeSearchId() != null) {
             PlacemarkAttributeSearch placemarkAttributeSearch = placemarkAttributeSearchRepository.getReferenceById(scenarioPlacemarkDto.placemarkAttributeSearchId());
             scenarioPlacemark.setPlacemarkAttributeSearch(placemarkAttributeSearch);
         }
-        return scenarioPlacemarkMapper.toDto(scenarioPlacemarkRepository.save(scenarioPlacemark));
+        ScenarioPlacemark sp=scenarioPlacemarkMapper.partialUpdate(scenarioPlacemarkDto, scenarioPlacemark);
+        return scenarioPlacemarkMapper.toDto(scenarioPlacemarkRepository.save(sp));
     }
 
     @Override

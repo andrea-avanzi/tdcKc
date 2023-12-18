@@ -11,6 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 
+import java.util.List;
+
 import static ch.ralscha.extdirectspring.annotation.ExtDirectMethodType.STORE_READ;
 
 @Controller
@@ -23,7 +25,7 @@ public class PlacemarkComboController {
 
     @ExtDirectMethod(STORE_READ)
     public ExtDirectStoreResult<PlacemarkAttributeSearch> read(ExtDirectStoreReadRequest storeRequest) {
-        Page<PlacemarkAttributeSearch> data = placemarkService.getPlacemarks(storeRequest);
-        return new ExtDirectStoreResult<>(data.getTotalElements(), data.getContent());
+        List<PlacemarkAttributeSearch> data = placemarkService.findAll();
+        return new ExtDirectStoreResult<>(data.size(), data);
     }
 }
