@@ -137,6 +137,15 @@ public class TheaterServiceImpl implements TheaterService {
         return attributeList;
     }
 
+    @Override
+    public List<Attribute> getRawAttrinutes() throws JsonProcessingException {
+        RequestEntity<Void> request = createRequest("https://geo-demo.dev.ctinnovation.it/api/attributes");
+        ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+        TypeReference<List<Attribute>> attributeTypeReference = new TypeReference<>() {};
+        List<Attribute> attributeList=  objectMapper.readValue(response.getBody(), attributeTypeReference);
+        return attributeList;
+    }
+
 
     private void _updateAttributes(List<Attribute> attributeList) {
         for(Attribute attribute:attributeList){
@@ -185,6 +194,8 @@ public class TheaterServiceImpl implements TheaterService {
         RequestEntity<Void> request = createRequest("https://geo-demo.dev.ctinnovation.it/api/attributesKeysFeatures");
         return restTemplate.exchange(request, String.class);
     }
+
+
 
     private RequestEntity<Void> createRequest(String url) throws JsonProcessingException {
         TheaterJwtResponse jwtResponse = getConnectionToken();

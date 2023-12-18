@@ -60,6 +60,7 @@ class TdcKcApplicationTests {
     @Test
     void testReadAttributes() throws JsonProcessingException {
         List<Attribute> listAttributes=theaterService.getAttributes();
+        System.out.println(listAttributes);
     }
 
     @Test

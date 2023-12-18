@@ -31,4 +31,6 @@ public interface TheaterService {
     List<PlacemarkAttributeSearch> getPlacemarks() throws JsonProcessingException;
 
     ResponseEntity<String> getAttributesKeyFeatures() throws JsonProcessingException;
+
+    List<Attribute> getRawAttrinutes() throws JsonProcessingException;
 }
