@@ -6,6 +6,8 @@ import it.ctinnovation.tdcKc.model.KeyCloakResponse;
 import it.ctinnovation.tdcKc.model.attribute.Attribute;
 import it.ctinnovation.tdcKc.model.message.Message;
 import it.ctinnovation.tdcKc.model.message.MqttMessage;
+import it.ctinnovation.tdcKc.model.placemark.PlacemarkAttributeSearch;
+import it.ctinnovation.tdcKc.model.placemark.PlacemarkAttributeSearchReduced;
 import it.ctinnovation.tdcKc.model.pocterna.AnomaliaAperta;
 import it.ctinnovation.tdcKc.repository.ScenarioEntityRepository;
 import it.ctinnovation.tdcKc.repository.pocterna.AnomalieAperteRepository;
@@ -61,6 +63,12 @@ class TdcKcApplicationTests {
     void testReadAttributes() throws JsonProcessingException {
         List<Attribute> listAttributes=theaterService.getAttributes();
         System.out.println(listAttributes);
+    }
+
+    @Test
+    public void testReadPlacemarks() throws JsonProcessingException {
+        List<PlacemarkAttributeSearch> listPlacemarks=theaterService.getPlacemarks();
+        System.out.println(listPlacemarks);
     }
 
     @Test
