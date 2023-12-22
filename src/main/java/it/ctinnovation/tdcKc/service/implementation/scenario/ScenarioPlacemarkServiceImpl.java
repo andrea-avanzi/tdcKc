@@ -29,7 +29,7 @@ public class ScenarioPlacemarkServiceImpl implements ScenarioPlacemarkService {
     @Override
     @Transactional(readOnly = true)
     public List<ScenarioPlacemarkDto> read(Long scenarioId) {
-        log.debug("Request to get all Questionnaires");
+        log.debug("Request to get all ScenariosPlacemarks");
         return scenarioPlacemarkRepository.findByScenarioEntityId(scenarioId).stream().map(scenarioPlacemarkMapper::toDto).toList();
     }
 

@@ -17,7 +17,7 @@ public class ScenarioJob implements Job {
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.info("Eseguo Job: " + jobExecutionContext.getJobDetail().getKey().getName());
+        log.info("Eseguo Job con scenarioId: " + jobExecutionContext.getJobDetail().getKey().getName());
         scenarioService.readAndSendScenario(Long.parseLong(jobExecutionContext.getJobDetail().getKey().getName()));
     }
 }

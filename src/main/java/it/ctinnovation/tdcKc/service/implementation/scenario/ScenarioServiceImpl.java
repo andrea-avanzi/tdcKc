@@ -35,6 +35,8 @@ public class ScenarioServiceImpl implements ScenarioService {
     final ScenarioKeyValueService scenarioKeyValueService;
     final MqttService mqttService;
 
+
+
     @Transactional(readOnly = true)
     public List<ScenarioEntity> read() {
         return scenarioEntityRepository.findAll();
@@ -47,6 +49,7 @@ public class ScenarioServiceImpl implements ScenarioService {
 
     @Override
     public void readAndSendScenario(Long scenarioId) {
+        log.info("Attivato sotto cron ScenarioId: {}", scenarioId);
         log.debug("ScenarioId: {}", scenarioId);
         ScenarioEntity scenarioEntity = scenarioEntityService.readScenario(scenarioId);
         // Leggi i placemark associati ad uno scenario
@@ -78,27 +81,43 @@ public class ScenarioServiceImpl implements ScenarioService {
         sendScenarioMessages(scenarioMessage);
     }
 
-    @Async
     public void sendScenarioMessages(ScenarioMessage scenarioMessage) {
+        log.debug("Attivato sendScenarioMessages con {} iterazioni e intervallo {} secondi", scenarioMessage.getIterations(), scenarioMessage.getInterval());
         int iterations = scenarioMessage.getIterations();
         int interval = scenarioMessage.getInterval();
 
-        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
         AtomicInteger counter = new AtomicInteger(0);
-
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+        int iter = iterations > 0 ? iterations : 1;
+        final int[] makLengthMessage = {0};
+        scenarioMessage.getScenarioPlacemarkMessages().forEach(messageObject -> {
+            List<KeyValue> keyValuesList = messageObject.getKeyValues();
+            for (KeyValue keyValue : keyValuesList) {
+                String value = keyValue.getValue();
+                List<String> values = StringUtils.tokenizeString(value);
+                if (values.size() > makLengthMessage[0]) {
+                    makLengthMessage[0] = values.size();
+                }
+            }
+        });
+        int loopController= iter * makLengthMessage[0];
+        // Eseguito ogni intervallo di tempo. Se interval = 0 allora eseguito ogni secondo.
+        // Se iterations = 0 allora eseguito all'infinito. Se iterations > 0 allora eseguito iterations volte.
         scheduler.scheduleAtFixedRate(() -> {
             int i = counter.getAndIncrement();
-            int iter = iterations > 0 ? iterations : 1;
-            if (i >= iter) {
+            log.debug("Iteration: " + i + " of " + loopController + " (0 = infinite)");
+            if (i >= loopController) {
                 log.info("Shutting down scheduler");
                 scheduler.shutdown(); // Shut down the scheduler after all iterations are done.
                 return;
             }
             scenarioMessage.getScenarioPlacemarkMessages().forEach(messageObject -> {
-                String placemarkPuplicId = messageObject.getPublicId();
+                String placemarkPublicId = messageObject.getPublicId();
+                log.debug("loop sui messaggi previsti placemarkPuplicId: " + placemarkPublicId);
                 List<KeyValue> keyValuesList = messageObject.getKeyValues();
                 Map<String, Message> builtMessage = new HashMap<>();
                 for (KeyValue keyValue : keyValuesList) {
+                    log.debug("loop sui messaggi previsti keyValue: " + keyValue.toString());
                     String key = keyValue.getKey();
                     String value = keyValue.getValue();
                     List<String> values = StringUtils.tokenizeString(value);
@@ -107,7 +126,7 @@ public class ScenarioServiceImpl implements ScenarioService {
                     Message msg = new Message(key, msgElement);
                     builtMessage.put(key, msg);
                 }
-                MqttMessage mqttMessage = new MqttMessage(placemarkPuplicId, builtMessage.values().stream().toList());
+                MqttMessage mqttMessage = new MqttMessage(placemarkPublicId, builtMessage.values().stream().toList());
                 try {
                     mqttService.sendMessagesToMqttBroker(mqttMessage);
                     log.info("Sent message: " + mqttMessage.toString() + " to MQTT broker");

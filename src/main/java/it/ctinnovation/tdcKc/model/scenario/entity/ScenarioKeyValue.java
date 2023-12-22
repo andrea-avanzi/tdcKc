@@ -1,6 +1,7 @@
 package it.ctinnovation.tdcKc.model.scenario.entity;
 
 import it.ctinnovation.tdcKc.model.abstractEntities.AbstractEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -11,7 +12,7 @@ import lombok.Setter;
 @Table(name = "scenario_keyvalue")
 public class ScenarioKeyValue extends AbstractEntity {
 
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.ALL)
     ScenarioPlacemark scenarioPlacemark;
 
     String key;

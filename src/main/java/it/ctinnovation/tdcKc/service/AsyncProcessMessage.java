@@ -37,15 +37,21 @@ public class AsyncProcessMessage {
 
         scheduler.scheduleAtFixedRate(() -> {
             int i = counter.getAndIncrement();
+
+            List<List<KeyValue>> messages = messageObject.getMessages();
+            Map<String, Message> builtMessage = new HashMap<>();
             int iter=iterations>0?iterations:1;
-            if (i >= iter) {
+
+
+            List<String> messageTokens = StringUtils.tokenizeString(messages.get(0).get(0).getValue());
+            int messageLength=messageTokens.size();
+            int loopController= iter * messageLength;
+
+            if (i >= loopController) {
                 log.info("Shutting down scheduler");
                 scheduler.shutdown(); // Shut down the scheduler after all iterations are done.
                 return;
             }
-
-            List<List<KeyValue>> messages = messageObject.getMessages();
-            Map<String, Message> builtMessage = new HashMap<>();
 
             for (List<KeyValue> row : messages) {
                 for (KeyValue keyValue : row) {

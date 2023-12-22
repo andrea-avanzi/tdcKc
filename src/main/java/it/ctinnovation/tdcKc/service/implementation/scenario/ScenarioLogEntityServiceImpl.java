@@ -35,7 +35,7 @@ public class ScenarioLogEntityServiceImpl implements ScenarioLogEntityService {
             ScenarioLogEntity scenarioLogEntity = new ScenarioLogEntity();
             scenarioLogEntity.setScenarioId(scenarioId);
             scenarioLogEntity.setName(scenarioEntity.getName());
-            scenarioLogEntity.setCron("0 0/1 * 1/1 * ? *");
+            scenarioLogEntity.setCron(cron);
             scenarioLogEntityRepository.save(scenarioLogEntity);
         }
     }

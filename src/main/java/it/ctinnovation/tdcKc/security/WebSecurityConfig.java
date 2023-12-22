@@ -37,7 +37,7 @@ public class WebSecurityConfig {
 
 //            .requestMatchers(HttpMethod.POST, "/router/**").permitAll()
 //            .requestMatchers(HttpMethod.POST, "/router").permitAll()
-//            .requestMatchers(HttpMethod.POST, "/api/quartz/**").permitAll()
+            .requestMatchers(HttpMethod.POST, "/api/quartz/**").permitAll()
 //            .requestMatchers(HttpMethod.POST, "/processMessage").permitAll()
 //            .requestMatchers(HttpMethod.POST, "/processScenarioKeyValues").permitAll()
 //            .requestMatchers(HttpMethod.POST, "/pocTerna/**").permitAll() // TODO togliere

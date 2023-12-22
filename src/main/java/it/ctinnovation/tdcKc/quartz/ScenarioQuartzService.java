@@ -17,19 +17,27 @@ public class ScenarioQuartzService {
     public void scheduleJob(Long scenarioId, String cronExpression) throws SchedulerException {
         // esegui il job sulla base dello scenario id
         JobDetail jobDetail = JobBuilder.newJob(ScenarioJob.class)
-            .withIdentity(scenarioId.toString(), "group1")
+            .withIdentity(scenarioId.toString(), "defaultGroup")
             .build();
 
-        CronTrigger trigger = TriggerBuilder.newTrigger()
-            .withIdentity("trigger" + scenarioId.toString(), "group1")
+        Trigger immediateTrigger = TriggerBuilder.newTrigger()
+            .withIdentity("immediateTrigger" + scenarioId, "defaultGroup")
+            .startNow()
+            .forJob(jobDetail)
+            .build();
+
+        CronTrigger cronTrigger = TriggerBuilder.newTrigger()
+            .withIdentity("cronTrigger" + scenarioId, "defaultGroup")
             .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression))
+            .forJob(jobDetail)
             .build();
 
-        scheduler.scheduleJob(jobDetail, trigger);
+        scheduler.scheduleJob(jobDetail, immediateTrigger);
+        scheduler.scheduleJob(cronTrigger);
     }
 
     public void unscheduleJob(Long scenarioId) throws SchedulerException {
-        JobKey jobKey = new JobKey(scenarioId.toString(), "group1");
+        JobKey jobKey = new JobKey(scenarioId.toString(), "defaultGroup");
         scheduler.deleteJob(jobKey);
     }
 }

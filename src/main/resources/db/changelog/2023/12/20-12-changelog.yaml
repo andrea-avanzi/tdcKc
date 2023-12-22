@@ -1,0 +1,17 @@
+databaseChangeLog:
+    - changeSet:
+          id: add-cascade-delete-fk_scenario_keyvalue_on_scenarioplacemark
+          author: marcopancotti (generated)
+          objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
+          changes:
+              - dropForeignKeyConstraint:
+                    baseTableName: scenario_keyvalue
+                    constraintName: fk_scenario_keyvalue_on_scenarioplacemark
+              - addForeignKeyConstraint:
+                    baseTableName: scenario_keyvalue
+                    baseColumnNames: scenario_placemark_id
+                    constraintName: fk_scenario_keyvalue_on_scenarioplacemark
+                    referencedTableName: scenario_placemark
+                    referencedColumnNames: id
+                    onDelete: CASCADE
+
