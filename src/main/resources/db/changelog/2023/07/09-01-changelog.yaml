@@ -54,13 +54,5 @@ databaseChangeLog:
             constraintName: FK_SCENERIOFLOWENTITY_ON_SCENARIO
             referencedColumnNames: id
             referencedTableName: scenario_entity
-  - changeSet:
-      id: 1688889815475-8
-      author: marcopancotti (generated)
-      objectQuotingStrategy: QUOTE_ONLY_RESERVED_WORDS
-      changes:
-        - dropTable:
-            cascadeConstraints: true
-            tableName: scenario_message
 
 

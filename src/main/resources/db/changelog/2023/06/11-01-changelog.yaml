@@ -43,13 +43,13 @@ databaseChangeLog:
                                     type: VARCHAR(255)
                             -   column:
                                     name: data_rilevazione_anomalia
-                                    type: DATETIME
+                                    type: DATE
                             -   column:
                                     name: autore_rilevazione
                                     type: VARCHAR(255)
                             -   column:
                                     name: data_ultima_rilevazione_anomalia
-                                    type: DATETIME
+                                    type: DATE
                             -   column:
                                     name: autore_ultima_rilevazione
                                     type: VARCHAR(255)
